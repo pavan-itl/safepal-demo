@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { BottomNav } from './BottomNav';
-import { cn } from '../utils/helpers';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: (

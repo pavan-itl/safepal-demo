@@ -3,7 +3,6 @@ import { demoWallet, demoTokens, demoTransactions } from '../data/demoData';
 import { Header } from '../components/Header';
 import { PortfolioSummary, QuickActions, TokenList } from '../components/TokenComponents';
 import { TransactionList } from '../components/TransactionComponents';
-import { cn, formatNumber } from '../utils/helpers';
 import { Card, CardContent } from '../components/ui';
 
 export function DashboardPage() {

@@ -1,6 +1,6 @@
 import type { MarketData } from '../types';
 import { cn, formatNumber } from '../utils/helpers';
-import { Card, Badge } from './ui';
+import { Badge } from './ui';
 
 interface MarketTokenProps {
   token: MarketData;
@@ -99,11 +99,9 @@ export function MarketList({ tokens, onTokenClick, searchQuery = '', className }
 interface MarketHeaderProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
-  onSortChange?: (sort: string) => void;
-  sortBy?: string;
 }
 
-export function MarketHeader({ searchQuery, onSearchChange, onSortChange, sortBy }: MarketHeaderProps) {
+export function MarketHeader({ searchQuery, onSearchChange }: MarketHeaderProps) {
   return (
     <div className="safe-container px-4 py-4">
       <div className="relative max-w-md">

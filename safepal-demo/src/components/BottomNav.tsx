@@ -1,5 +1,5 @@
 import { cn } from '../utils/helpers';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 interface BottomNavItem {
   id: string;
@@ -37,14 +37,14 @@ export function BottomNav({ items, activeItem, onChange, className }: BottomNavP
         >
           <span className="safe-tab-icon flex items-center justify-center" aria-hidden="true">
             {item.icon}
-            {item.badge && (
-              <span
-                className="absolute -top-1 -right-1 min-w-[18px] h-5 px-1.5 text-[10px] font-semibold text-white bg-safepal-green-500 rounded-full flex items-center justify-center"
-                aria-label={`${item.badge} notifications`}
-              >
-                {item.badge > 99 ? '99+' : item.badge}
-              </span>
-            )}
+{item.badge && (
+                  <span
+                    className="absolute -top-1 -right-1 min-w-[18px] h-5 px-1.5 text-[10px] font-semibold text-white bg-safepal-green-500 rounded-full flex items-center justify-center"
+                    aria-label={`${item.badge} notifications`}
+                  >
+                    {typeof item.badge === 'number' && item.badge > 99 ? '99+' : item.badge}
+                  </span>
+                )}
           </span>
           <span className="safe-tab-label">{item.label}</span>
         </button>

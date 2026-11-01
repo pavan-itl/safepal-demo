@@ -1,6 +1,6 @@
 import type { Transaction } from '../types';
 import { cn, formatNumber, formatDate, formatDateTime, formatAddress } from '../utils/helpers';
-import { Card, Badge } from './ui';
+import { Badge } from './ui';
 
 interface TransactionItemProps {
   transaction: Transaction;
@@ -17,13 +17,6 @@ export function TransactionItem({ transaction, onClick, className }: Transaction
     stake: 'bg-safepal-blue-50 text-safepal-blue-700',
     unstake: 'bg-safepal-blue-50 text-safepal-blue-700',
     claim: 'bg-safepal-green-50 text-safepal-green-700',
-  };
-
-  const statusColors = {
-    confirmed: 'bg-safepal-green-50 text-safepal-green-700',
-    pending: 'bg-safepal-blue-50 text-safepal-blue-700',
-    failed: 'bg-safepal-green-50 text-safepal-green-700',
-    cancelled: 'bg-safepal-dark-50 text-safepal-dark-600',
   };
 
   const typeIcons = {

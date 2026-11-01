@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { demoMarketData } from '../data/demoData';
 import { Header } from '../components/Header';
-import { MarketList, MarketHeader, PriceChart } from '../components/MarketComponents';
+import { MarketList, MarketHeader } from '../components/MarketComponents';
 import { cn, formatNumber } from '../utils/helpers';
-import { Card, CardContent, Badge, Button, Input } from '../components/ui';
+import { Card, Badge } from '../components/ui';
 
 export function MarketPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -35,8 +35,6 @@ export function MarketPage() {
         <MarketHeader
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
-          onSortChange={setSortBy}
-          sortBy={sortBy}
         />
 
         <div className="grid grid-cols-2 gap-3 mb-4">
@@ -104,10 +102,10 @@ export function MarketPage() {
         </div>
 
         <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 mb-4" role="tablist" aria-label="Sort options">
-          {['gainers', 'losers', 'volume', 'marketcap'].map((sort) => (
+          {(['gainers', 'losers', 'volume', 'marketcap'] as const).map((sort) => (
             <button
               key={sort}
-              onClick={() => setSortBy(sort as typeof sortBy)}
+              onClick={() => setSortBy(sort)}
               className={cn(
                 'px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors',
                 sortBy === sort

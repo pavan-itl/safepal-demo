@@ -197,21 +197,21 @@ export function Separator({ orientation = 'horizontal', className, ...props }: S
   );
 }
 
-interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TabsProps {
   tabs: Array<{ id: string; label: string; icon?: React.ReactNode }>;
   activeTab: string;
   onChange: (tabId: string) => void;
   variant?: 'default' | 'bottom-nav';
+  className?: string;
 }
 
-export function Tabs({ tabs, activeTab, onChange, variant = 'default', className, ...props }: TabsProps) {
+export function Tabs({ tabs, activeTab, onChange, variant = 'default', className }: TabsProps) {
   if (variant === 'bottom-nav') {
     return (
       <div
         className={cn('safe-bottom-nav flex items-center justify-around pb-safe-area-bottom', className)}
         role="tablist"
         aria-label="Main navigation"
-        {...props}
       >
         {tabs.map((tab) => (
           <button
@@ -239,7 +239,6 @@ export function Tabs({ tabs, activeTab, onChange, variant = 'default', className
       className={cn('flex border-b border-safepal-dark-200', className)}
       role="tablist"
       aria-label="Tabs"
-      {...props}
     >
       {tabs.map((tab) => (
         <button

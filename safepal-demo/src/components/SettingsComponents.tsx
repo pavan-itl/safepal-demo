@@ -1,5 +1,5 @@
 import { cn } from '../utils/helpers';
-import { Button, Input, Card, CardContent } from './ui';
+import { Button, Card, CardContent } from './ui';
 
 interface SettingsSectionProps {
   title: string;
@@ -112,7 +112,7 @@ interface DangerZoneItemProps {
   description: string;
   buttonText: string;
   onClick: () => void;
-  variant?: 'danger' | 'warning';
+  variant?: 'danger' | 'ghost' | 'outline' | 'primary' | 'secondary';
   className?: string;
 }
 
@@ -154,7 +154,7 @@ interface WalletSelectorProps {
   className?: string;
 }
 
-export function WalletSelector({ wallets, activeWalletId, onSelect, onAddWallet, className }: WalletSelectorProps) {
+export function WalletSelector({ wallets, onSelect, onAddWallet, className }: WalletSelectorProps) {
   return (
     <div className={cn('space-y-2', className)}>
       {wallets.map((wallet) => (

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { demoTransactions, demoTokens } from '../data/demoData';
+import { demoTransactions } from '../data/demoData';
 import { Header } from '../components/Header';
 import { TransactionList, TransactionDetail } from '../components/TransactionComponents';
-import { cn, formatNumber, formatDate, formatDateTime, formatAddress } from '../utils/helpers';
-import { Card, Badge, Button, Input } from '../components/ui';
+import { cn } from '../utils/helpers';
+import { Input } from '../components/ui';
 import type { Transaction } from '../types';
 
 export function TransactionsPage() {

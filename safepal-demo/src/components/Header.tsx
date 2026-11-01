@@ -1,6 +1,6 @@
 import { cn } from '../utils/helpers';
 
-interface HeaderProps extends React.HTMLAttributes<HTMLHeaderElement> {
+interface HeaderProps extends React.HTMLAttributes<HTMLHeadElement> {
   title?: string;
   showBack?: boolean;
   onBack?: () => void;
@@ -59,16 +59,17 @@ export function HeaderAction({ icon, label, variant = 'ghost', className, onClic
   );
 }
 
-interface SearchBarProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SearchBarProps {
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
   onFocus?: () => void;
+  className?: string;
 }
 
-export function SearchBar({ placeholder = 'Search tokens...', value, onChange, onFocus, className, ...props }: SearchBarProps) {
+export function SearchBar({ placeholder = 'Search tokens...', value, onChange, onFocus, className }: SearchBarProps) {
   return (
-    <div className={cn('flex-1 max-w-md', className)} {...props}>
+    <div className={cn('flex-1 max-w-md', className)}>
       <div className="relative">
         <svg
           className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-safepal-dark-400"

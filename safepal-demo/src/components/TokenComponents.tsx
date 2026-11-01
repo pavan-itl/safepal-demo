@@ -1,6 +1,6 @@
 import type { Token } from '../types';
 import { cn, formatNumber, formatAddress } from '../utils/helpers';
-import { Card, Badge, Button } from './ui';
+import { Card, Button } from './ui';
 
 interface TokenCardProps {
   token: Token;
@@ -65,7 +65,7 @@ export function TokenCard({ token, variant = 'default', onClick, showActions = f
                 )}
               </div>
               <p className="text-sm text-safepal-dark-500 truncate">{token.name}</p>
-              <p className="text-xs text-safepal-dark-400">{token.network} • {formatAddress(token.contractAddress || token.address || '')}</p>
+              <p className="text-xs text-safepal-dark-400">{token.network} • {formatAddress(token.contractAddress || '')}</p>
             </div>
           </div>
           <div className="text-right flex-shrink-0">

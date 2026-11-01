@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { demoWallet, demoTokens } from '../data/demoData';
 import { Header } from '../components/Header';
 import { TokenList, PortfolioSummary } from '../components/TokenComponents';
-import { cn, formatNumber } from '../utils/helpers';
-import { Card, CardContent, Button, Input } from '../components/ui';
+import { cn } from '../utils/helpers';
+import { Card, Button, Input } from '../components/ui';
 
 export function WalletPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState<'all' | 'tokens' | 'nfts' | 'defi'>('all');
-  const [showBalance, setShowBalance] = useState(true);
 
   const filteredTokens = demoTokens.filter(
     (token) =>
@@ -35,9 +34,9 @@ export function WalletPage() {
 
       <main className="safe-container px-4 pb-8">
         <PortfolioSummary
-          totalValue={showBalance ? totalValue : 0}
-          change24h={showBalance ? change24h : 0}
-          changeValue24h={showBalance ? changeValue24h : 0}
+          totalValue={totalValue}
+          change24h={change24h}
+          changeValue24h={changeValue24h}
         />
 
         <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4" role="tablist" aria-label="Asset categories">

@@ -9,8 +9,7 @@ import {
   VersionInfo,
   WalletSelector,
 } from '../components/SettingsComponents';
-import { cn } from '../utils/helpers';
-import { Card, Button, Input } from '../components/ui';
+import { Button } from '../components/ui';
 
 const demoWallets = [
   { id: '1', name: 'Main Wallet', address: '0x742d...b8D4', isActive: true },
@@ -211,7 +210,7 @@ export function SettingsPage() {
             label="Clear Cache"
             description="Clear all cached data and temporary files"
             buttonText="Clear"
-            variant="warning"
+            variant="ghost"
             onClick={() => alert('Cache cleared')}
           />
           <DangerZoneItem
