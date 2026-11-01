@@ -33,4 +33,6 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 ## Deploying to Render
 
-This project is a Vite static site. Configure the Render service with the build command `npm ci && npm run build` and publish directory `dist`. The `render.yaml` Blueprint contains these settings for new Blueprint deployments.
+This project is a Vite static site in the `safepal-demo` subdirectory. The repository-root `render.yaml` configures the app root, build command, and publish directory for Render Blueprint deployments.
+
+For an existing dashboard-managed Render service, set **Root Directory** to `safepal-demo`, **Build Command** to `npm ci && npm run build`, and **Publish Directory** to `dist`. Saving a `render.yaml` does not automatically change an existing service's dashboard settings.

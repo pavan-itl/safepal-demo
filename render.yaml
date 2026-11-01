@@ -2,5 +2,6 @@ services:
   - type: web
     name: safepal-demo
     runtime: static
+    rootDir: safepal-demo
     buildCommand: npm ci && npm run build
-    staticPublishPath: ./dist
+    staticPublishPath: dist
