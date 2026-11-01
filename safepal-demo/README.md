@@ -30,3 +30,7 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Deploying to Render
+
+This project is a Vite static site. Configure the Render service with the build command `npm ci && npm run build` and publish directory `dist`. The `render.yaml` Blueprint contains these settings for new Blueprint deployments.
