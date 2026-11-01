@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-safepal-blue-50: #EFF6FF;
+  --color-safepal-blue-100: #DBEAFE;
+  --color-safepal-blue-200: #BFDBFE;
+  --color-safepal-blue-300: #93C5FD;
+  --color-safepal-blue-400: #60A5FA;
+  --color-safepal-blue-500: #3B82F6;
+  --color-safepal-blue-600: #2563EB;
+  --color-safepal-blue-700: #1D4ED8;
+  --color-safepal-blue-800: #1E40AF;
+  --color-safepal-blue-900: #1E3A8A;
+
+  --color-safepal-dark-50: #F8FAFC;
+  --color-safepal-dark-100: #F1F5F9;
+  --color-safepal-dark-200: #E2E8F0;
+  --color-safepal-dark-300: #CBD5E1;
+  --color-safepal-dark-400: #94A3B8;
+  --color-safepal-dark-500: #64748B;
+  --color-safepal-dark-600: #475569;
+  --color-safepal-dark-700: #334155;
+  --color-safepal-dark-800: #1E293B;
+  --color-safepal-dark-900: #0F172A;
+  --color-safepal-dark-950: #020617;
+
+  --color-safepal-green-50: #F0FDF4;
+  --color-safepal-green-100: #DCFCE7;
+  --color-safepal-green-200: #BBF7D0;
+  --color-safepal-green-300: #86EFAC;
+  --color-safepal-green-400: #4ADE80;
+  --color-safepal-green-500: #22C55E;
+  --color-safepal-green-600: #16A34A;
+  --color-safepal-green-700: #15803D;
+  --color-safepal-green-800: #166534;
+  --color-safepal-green-900: #14532D;
+}
+
+@layer base {
+  * {
+    @apply border-safepal-dark-200;
+  }
+
+  body {
+    @apply bg-safepal-dark-50 text-safepal-dark-900 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@utility safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@utility safe-area-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+@utility safe-container {
+  @apply w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+@utility safe-card {
+  @apply bg-white rounded-2xl shadow-sm border border-safepal-dark-100 overflow-hidden transition-all duration-200;
+}
+
+@utility safe-card-elevated {
+  @apply safe-card shadow-lg border-safepal-dark-200;
+}
+
+  @utility safe-btn {
+  @apply inline-flex items-center justify-center gap-2 font-medium rounded-xl px-4 py-3 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+@utility safe-btn-primary {
+  @apply safe-btn bg-safepal-blue-600 text-white hover:bg-safepal-blue-700 active:bg-safepal-blue-800 focus-visible:ring-safepal-blue-500;
+}
+
+@utility safe-btn-secondary {
+  @apply safe-btn bg-safepal-dark-100 text-safepal-dark-900 hover:bg-safepal-dark-200 active:bg-safepal-dark-300 focus-visible:ring-safepal-dark-400;
+}
+
+@utility safe-btn-ghost {
+  @apply safe-btn bg-transparent text-safepal-dark-600 hover:bg-safepal-dark-100 active:bg-safepal-dark-200 focus-visible:ring-safepal-dark-400;
+}
+
+@utility safe-btn-danger {
+  @apply safe-btn bg-safepal-green-50 text-safepal-green-700 hover:bg-safepal-green-100 active:bg-safepal-green-200 focus-visible:ring-safepal-green-400;
+}
+
+@utility safe-btn-outline {
+  @apply safe-btn border border-safepal-dark-200 bg-white text-safepal-dark-700 hover:bg-safepal-dark-50 active:bg-safepal-dark-100 focus-visible:ring-safepal-dark-400;
+}
+
+@utility safe-input {
+  @apply w-full px-4 py-3 rounded-xl border border-safepal-dark-200 bg-white text-safepal-dark-900 placeholder-safepal-dark-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-safepal-blue-500 focus:border-transparent;
+}
+
+@utility safe-input-error {
+  @apply border-safepal-green-500 focus:ring-safepal-green-500;
+}
+
+@utility safe-label {
+  @apply block text-sm font-medium text-safepal-dark-700 mb-1.5;
+}
+
+@utility safe-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+@utility safe-badge-blue {
+  @apply safe-badge bg-safepal-blue-50 text-safepal-blue-700;
+}
+
+@utility safe-badge-green {
+  @apply safe-badge bg-safepal-green-50 text-safepal-green-700;
+}
+
+@utility safe-badge-gray {
+  @apply safe-badge bg-safepal-dark-100 text-safepal-dark-600;
+}
+
+@utility safe-tab {
+  @apply flex-1 flex flex-col items-center gap-1 py-3 px-2 text-safepal-dark-400 transition-colors duration-200;
+}
+
+@utility safe-tab-active {
+  @apply text-safepal-blue-600;
+}
+
+@utility safe-tab-icon {
+  @apply w-6 h-6;
+}
+
+@utility safe-tab-label {
+  @apply text-xs font-medium;
+}
+
+@utility safe-header {
+  @apply sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-safepal-dark-100;
+}
+
+@utility safe-bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 bg-white border-t border-safepal-dark-100 safe-area-bottom;
+}
+
+@utility safe-page {
+  @apply min-h-screen pb-20 pt-16;
+}
+
+@utility safe-page-full {
+  @apply min-h-screen;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-safepal-blue-600 to-safepal-blue-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: white;
+    border-radius: 1rem;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #3B82F6, #22C55E);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+}
