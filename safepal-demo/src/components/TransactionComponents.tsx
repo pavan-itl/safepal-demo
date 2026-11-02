@@ -11,12 +11,12 @@ interface TransactionItemProps {
 export function TransactionItem({ transaction, onClick, className }: TransactionItemProps) {
   const isPositive = transaction.type === 'receive';
   const typeColors = {
-    send: 'bg-safepal-green-50 text-safepal-green-700',
-    receive: 'bg-safepal-blue-50 text-safepal-blue-700',
-    swap: 'bg-safepal-blue-50 text-safepal-blue-700',
-    stake: 'bg-safepal-blue-50 text-safepal-blue-700',
-    unstake: 'bg-safepal-blue-50 text-safepal-blue-700',
-    claim: 'bg-safepal-green-50 text-safepal-green-700',
+    send: 'bg-safepal-red-900 text-safepal-red-300',
+    receive: 'bg-safepal-green-900 text-safepal-green-300',
+    swap: 'bg-safepal-blue-900 text-safepal-blue-300',
+    stake: 'bg-safepal-blue-900 text-safepal-blue-300',
+    unstake: 'bg-safepal-blue-900 text-safepal-blue-300',
+    claim: 'bg-safepal-green-900 text-safepal-green-300',
   };
 
   const typeIcons = {
@@ -74,30 +74,30 @@ export function TransactionItem({ transaction, onClick, className }: Transaction
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 flex-1 min-w-0">
-            <h4 className="font-medium text-safepal-dark-900 truncate">{transaction.token.symbol}</h4>
+            <h4 className="font-medium text-safepal-dark-50 truncate">{transaction.token.symbol}</h4>
             <Badge variant="gray" className="text-xs">{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</Badge>
           </div>
           <div className="text-right flex-shrink-0">
-            <div className={cn('font-semibold', isPositive ? 'text-safepal-green-600' : 'text-safepal-dark-900')}>
+            <div className={cn('font-semibold', isPositive ? 'text-safepal-green-400' : 'text-safepal-dark-50')}>
               {isPositive ? '+' : '-'}{formatNumber(transaction.value, { currency: true })}
             </div>
-            <div className="text-xs text-safepal-dark-500">{formatDate(transaction.timestamp)}</div>
+            <div className="text-xs text-safepal-dark-400">{formatDate(transaction.timestamp)}</div>
           </div>
         </div>
         <div className="mt-1 flex items-center gap-2 flex-wrap">
-          <Badge variant={transaction.status === 'confirmed' ? 'green' : transaction.status === 'pending' ? 'blue' : 'gray'} className="text-xs">
+          <Badge variant={transaction.status === 'confirmed' ? 'green' : transaction.status === 'pending' ? 'blue' : 'red'} className="text-xs">
             {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
           </Badge>
-          <span className="text-xs text-safepal-dark-400">
+          <span className="text-xs text-safepal-dark-500">
             {transaction.network}
           </span>
-          <span className="text-xs text-safepal-dark-400">
+          <span className="text-xs text-safepal-dark-500">
             Fee: {formatNumber(transaction.fee, { decimals: 6 })} {transaction.feeToken}
           </span>
         </div>
       </div>
       {onClick && (
-        <svg className="w-5 h-5 text-safepal-dark-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <svg className="w-5 h-5 text-safepal-dark-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       )}
@@ -113,21 +113,21 @@ interface TransactionDetailProps {
 export function TransactionDetail({ transaction, onClose }: TransactionDetailProps) {
   const isPositive = transaction.type === 'receive';
   const typeColors = {
-    send: 'bg-safepal-green-50 text-safepal-green-700',
-    receive: 'bg-safepal-blue-50 text-safepal-blue-700',
-    swap: 'bg-safepal-blue-50 text-safepal-blue-700',
-    stake: 'bg-safepal-blue-50 text-safepal-blue-700',
-    unstake: 'bg-safepal-blue-50 text-safepal-blue-700',
-    claim: 'bg-safepal-green-50 text-safepal-green-700',
+    send: 'bg-safepal-red-900 text-safepal-red-300',
+    receive: 'bg-safepal-green-900 text-safepal-green-300',
+    swap: 'bg-safepal-blue-900 text-safepal-blue-300',
+    stake: 'bg-safepal-blue-900 text-safepal-blue-300',
+    unstake: 'bg-safepal-blue-900 text-safepal-blue-300',
+    claim: 'bg-safepal-green-900 text-safepal-green-300',
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="tx-detail-title">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
-      <div className="relative w-full max-w-md bg-white rounded-t-2xl sm:rounded-2xl safe-area-bottom max-h-[90vh] overflow-y-auto">
-        <div className="p-4 border-b border-safepal-dark-100 flex items-center justify-between sticky top-0 bg-white rounded-t-2xl sm:rounded-2xl">
-          <h2 id="tx-detail-title" className="text-lg font-semibold text-safepal-dark-900">Transaction Details</h2>
-          <button onClick={onClose} className="p-2 rounded-xl text-safepal-dark-500 hover:bg-safepal-dark-100" aria-label="Close">
+      <div className="absolute inset-0 bg-safepal-dark-950/50" onClick={onClose} aria-hidden="true" />
+      <div className="relative w-full max-w-md bg-safepal-dark-800 rounded-t-2xl sm:rounded-2xl safe-area-bottom max-h-[90vh] overflow-y-auto">
+        <div className="p-4 border-b border-safepal-dark-700 flex items-center justify-between sticky top-0 bg-safepal-dark-800 rounded-t-2xl sm:rounded-2xl">
+          <h2 id="tx-detail-title" className="text-lg font-semibold text-safepal-dark-50">Transaction Details</h2>
+          <button onClick={onClose} className="p-2 rounded-xl text-safepal-dark-400 hover:bg-safepal-dark-700" aria-label="Close">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -139,70 +139,70 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
               <span className="text-2xl" aria-hidden="true">{transaction.token.symbol}</span>
             </div>
             <div className="text-right">
-              <div className={cn('text-2xl font-bold', isPositive ? 'text-safepal-green-600' : 'text-safepal-dark-900')}>
+              <div className={cn('text-2xl font-bold', isPositive ? 'text-safepal-green-400' : 'text-safepal-dark-50')}>
                 {isPositive ? '+' : '-'}{formatNumber(transaction.value, { currency: true })}
               </div>
-              <div className="text-sm text-safepal-dark-500">{formatDateTime(transaction.timestamp)}</div>
+              <div className="text-sm text-safepal-dark-400">{formatDateTime(transaction.timestamp)}</div>
             </div>
           </div>
 
           <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">Status</span>
-              <Badge variant={transaction.status === 'confirmed' ? 'green' : transaction.status === 'pending' ? 'blue' : 'gray'}>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">Status</span>
+              <Badge variant={transaction.status === 'confirmed' ? 'green' : transaction.status === 'pending' ? 'blue' : 'red'}>
                 {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
               </Badge>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">Type</span>
-              <span className="font-medium text-safepal-dark-900">{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">Type</span>
+              <span className="font-medium text-safepal-dark-50">{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">Network</span>
-              <span className="font-medium text-safepal-dark-900">{transaction.network}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">Network</span>
+              <span className="font-medium text-safepal-dark-50">{transaction.network}</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">Amount</span>
-              <span className="font-medium text-safepal-dark-900">{formatNumber(transaction.amount, { decimals: 6 })} {transaction.token.symbol}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">Amount</span>
+              <span className="font-medium text-safepal-dark-50">{formatNumber(transaction.amount, { decimals: 6 })} {transaction.token.symbol}</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">Value</span>
-              <span className="font-medium text-safepal-dark-900">{formatNumber(transaction.value, { currency: true })}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">Value</span>
+              <span className="font-medium text-safepal-dark-50">{formatNumber(transaction.value, { currency: true })}</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">Fee</span>
-              <span className="font-medium text-safepal-dark-900">{formatNumber(transaction.fee, { decimals: 6 })} {transaction.feeToken}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">Fee</span>
+              <span className="font-medium text-safepal-dark-50">{formatNumber(transaction.fee, { decimals: 6 })} {transaction.feeToken}</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">From</span>
-              <span className="font-mono text-sm text-safepal-dark-900 truncate max-w-[150px]">{formatAddress(transaction.fromAddress)}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">From</span>
+              <span className="font-mono text-sm text-safepal-dark-50 truncate max-w-[150px]">{formatAddress(transaction.fromAddress)}</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">To</span>
-              <span className="font-mono text-sm text-safepal-dark-900 truncate max-w-[150px]">{formatAddress(transaction.toAddress)}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">To</span>
+              <span className="font-mono text-sm text-safepal-dark-50 truncate max-w-[150px]">{formatAddress(transaction.toAddress)}</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-              <span className="text-safepal-dark-500">Tx Hash</span>
-              <span className="font-mono text-sm text-safepal-dark-900 truncate max-w-[150px]">{formatAddress(transaction.hash, 10)}</span>
+            <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+              <span className="text-safepal-dark-400">Tx Hash</span>
+              <span className="font-mono text-sm text-safepal-dark-50 truncate max-w-[150px]">{formatAddress(transaction.hash, 10)}</span>
             </div>
 
             {transaction.blockNumber && (
-              <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-50">
-                <span className="text-safepal-dark-500">Block</span>
-                <span className="font-medium text-safepal-dark-900">#{transaction.blockNumber.toLocaleString()}</span>
+              <div className="flex items-center justify-between p-3 rounded-xl bg-safepal-dark-950">
+                <span className="text-safepal-dark-400">Block</span>
+                <span className="font-medium text-safepal-dark-50">#{transaction.blockNumber.toLocaleString()}</span>
               </div>
             )}
           </div>
 
-          <div className="pt-4 border-t border-safepal-dark-100">
+          <div className="pt-4 border-t border-safepal-dark-700">
             <button
               onClick={onClose}
               className="w-full safe-btn-primary"
@@ -227,10 +227,10 @@ export function TransactionList({ transactions, onTransactionClick, emptyMessage
   if (transactions.length === 0) {
     return (
       <div className={cn('flex flex-col items-center justify-center py-12 text-center', className)}>
-        <svg className="w-16 h-16 text-safepal-dark-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <svg className="w-16 h-16 text-safepal-dark-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
-        <p className="text-safepal-dark-500">{emptyMessage}</p>
+        <p className="text-safepal-dark-400">{emptyMessage}</p>
       </div>
     );
   }

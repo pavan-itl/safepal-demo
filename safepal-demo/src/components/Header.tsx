@@ -15,7 +15,7 @@ export function Header({ title, showBack = false, onBack, actions, className, ch
           {showBack && (
             <button
               onClick={onBack}
-              className="p-2 rounded-xl text-safepal-dark-600 hover:bg-safepal-dark-100 active:bg-safepal-dark-200 transition-colors"
+              className="p-2 rounded-xl text-safepal-dark-300 hover:bg-safepal-dark-700 active:bg-safepal-dark-600 transition-colors"
               aria-label="Go back"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -24,7 +24,7 @@ export function Header({ title, showBack = false, onBack, actions, className, ch
             </button>
           )}
           {title && (
-            <h1 className="text-xl font-semibold text-safepal-dark-900">{title}</h1>
+            <h1 className="text-xl font-semibold text-safepal-dark-50">{title}</h1>
           )}
         </div>
         <div className="flex items-center gap-2">
@@ -47,7 +47,7 @@ export function HeaderAction({ icon, label, variant = 'ghost', className, onClic
     <button
       onClick={onClick}
       className={cn(
-        'p-2 rounded-xl text-safepal-dark-600 hover:bg-safepal-dark-100 active:bg-safepal-dark-200 transition-colors',
+        'p-2 rounded-xl text-safepal-dark-300 hover:bg-safepal-dark-700 active:bg-safepal-dark-600 transition-colors',
         variant === 'primary' && 'bg-safepal-blue-600 text-white hover:bg-safepal-blue-700',
         className
       )}
@@ -72,7 +72,7 @@ export function SearchBar({ placeholder = 'Search tokens...', value, onChange, o
     <div className={cn('flex-1 max-w-md', className)}>
       <div className="relative">
         <svg
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-safepal-dark-400"
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-safepal-dark-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ export function SearchBar({ placeholder = 'Search tokens...', value, onChange, o
           onChange={(e) => onChange(e.target.value)}
           onFocus={onFocus}
           placeholder={placeholder}
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-safepal-dark-100 text-safepal-dark-900 placeholder-safepal-dark-400 text-sm focus:outline-none focus:ring-2 focus:ring-safepal-blue-500 focus:bg-white"
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-safepal-dark-800 text-safepal-dark-50 placeholder-safepal-dark-400 text-sm focus:outline-none focus:ring-2 focus:ring-safepal-blue-500 focus:bg-safepal-dark-800"
           aria-label={placeholder}
         />
       </div>

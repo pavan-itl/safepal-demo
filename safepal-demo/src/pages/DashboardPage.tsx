@@ -15,13 +15,13 @@ export function DashboardPage() {
   const recentTransactions = demoTransactions.slice(0, 3);
 
   return (
-    <div className="safe-page-full safe-area-bottom pb-24">
+    <div className="safe-page-full safe-area-bottom pb-32">
       <Header
         title="Dashboard"
         actions={
           <button
             onClick={() => setShowBalance(!showBalance)}
-            className="p-2 rounded-xl text-safepal-dark-600 hover:bg-safepal-dark-100 active:bg-safepal-dark-200 transition-colors"
+            className="p-2 rounded-xl text-safepal-dark-300 hover:bg-safepal-dark-700 active:bg-safepal-dark-600 transition-colors"
             aria-label={showBalance ? 'Hide balance' : 'Show balance'}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -31,7 +31,7 @@ export function DashboardPage() {
         }
       />
 
-      <main className="safe-container px-4 pb-8">
+      <main className="safe-container px-4 pb-12">
         <PortfolioSummary
           totalValue={showBalance ? totalValue : 0}
           change24h={showBalance ? change24h : 0}
@@ -48,8 +48,8 @@ export function DashboardPage() {
 
         <div className="mt-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-safepal-dark-900">Your Assets</h2>
-            <button className="text-sm text-safepal-blue-600 font-medium">View All</button>
+            <h2 className="text-lg font-semibold text-safepal-dark-50">Your Assets</h2>
+            <button className="text-sm text-safepal-blue-400 font-medium">View All</button>
           </div>
           <TokenList
             tokens={topTokens}
@@ -61,8 +61,8 @@ export function DashboardPage() {
 
         <div className="mt-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-safepal-dark-900">Recent Activity</h2>
-            <button className="text-sm text-safepal-blue-600 font-medium">View All</button>
+            <h2 className="text-lg font-semibold text-safepal-dark-50">Recent Activity</h2>
+            <button className="text-sm text-safepal-blue-400 font-medium">View All</button>
           </div>
           <TransactionList
             transactions={recentTransactions}
@@ -71,26 +71,26 @@ export function DashboardPage() {
           />
         </div>
 
-        <Card className="mt-6">
-          <div className="px-6 py-4 border-b border-safepal-dark-100">
-            <h3 className="text-lg font-semibold text-safepal-dark-900">Quick Stats</h3>
+        <Card className="mt-6 mb-8">
+          <div className="px-6 py-4 border-b border-safepal-dark-700">
+            <h3 className="text-lg font-semibold text-safepal-dark-50">Quick Stats</h3>
           </div>
           <CardContent className="grid grid-cols-2 gap-4 p-4">
-            <div className="text-center p-4 rounded-xl bg-safepal-blue-50">
-              <div className="text-2xl font-bold text-safepal-blue-600">{demoTokens.length}</div>
-              <div className="text-sm text-safepal-blue-700">Tokens Held</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-blue-900">
+              <div className="text-2xl font-bold text-safepal-blue-400">{demoTokens.length}</div>
+              <div className="text-sm text-safepal-blue-300">Tokens Held</div>
             </div>
-            <div className="text-center p-4 rounded-xl bg-safepal-green-50">
-              <div className="text-2xl font-bold text-safepal-green-600">{demoTransactions.filter(t => t.status === 'confirmed').length}</div>
-              <div className="text-sm text-safepal-green-700">Completed Txns</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-green-900">
+              <div className="text-2xl font-bold text-safepal-green-400">{demoTransactions.filter(t => t.status === 'confirmed').length}</div>
+              <div className="text-sm text-safepal-green-300">Completed Txns</div>
             </div>
-            <div className="text-center p-4 rounded-xl bg-safepal-blue-50">
-              <div className="text-2xl font-bold text-safepal-blue-600">{demoWallet.networks.length}</div>
-              <div className="text-sm text-safepal-blue-700">Networks</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-blue-900">
+              <div className="text-2xl font-bold text-safepal-blue-400">{demoWallet.networks.length}</div>
+              <div className="text-sm text-safepal-blue-300">Networks</div>
             </div>
-            <div className="text-center p-4 rounded-xl bg-safepal-green-50">
-              <div className="text-2xl font-bold text-safepal-green-600">$0.00</div>
-              <div className="text-sm text-safepal-green-700">24h Fees</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-green-900">
+              <div className="text-2xl font-bold text-safepal-green-400">$0.00</div>
+              <div className="text-sm text-safepal-green-300">24h Fees</div>
             </div>
           </CardContent>
         </Card>

@@ -44,7 +44,7 @@ export function TransactionsPage() {
                 'px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors',
                 filter === f
                   ? 'bg-safepal-blue-600 text-white'
-                  : 'text-safepal-dark-600 hover:bg-safepal-dark-100'
+                  : 'text-safepal-dark-300 hover:bg-safepal-dark-700'
               )}
               role="tab"
               aria-selected={filter === f}

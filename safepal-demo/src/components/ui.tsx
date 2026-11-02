@@ -26,8 +26,8 @@ export function Button({
   };
   const sizeClasses = {
     sm: 'px-3 py-2 text-sm',
-    md: 'px-4 py-3 text-base',
-    lg: 'px-6 py-4 text-lg',
+    md: 'px-4 py-3 text-sm',
+    lg: 'px-6 py-4 text-base',
   };
 
   return (
@@ -71,12 +71,12 @@ export function Input({ label, error, helperText, className, id, ...props }: Inp
         {...props}
       />
       {error && (
-        <p id={`${inputId}-error`} className="mt-1.5 text-sm text-safepal-green-600" role="alert">
+        <p id={`${inputId}-error`} className="mt-1.5 text-sm text-safepal-red-400" role="alert">
           {error}
         </p>
       )}
       {helperText && !error && (
-        <p id={`${inputId}-helper`} className="mt-1.5 text-sm text-safepal-dark-500">
+        <p id={`${inputId}-helper`} className="mt-1.5 text-sm text-safepal-dark-400">
           {helperText}
         </p>
       )}
@@ -85,7 +85,7 @@ export function Input({ label, error, helperText, className, id, ...props }: Inp
 }
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: 'blue' | 'green' | 'gray';
+  variant?: 'blue' | 'green' | 'gray' | 'red';
   children: React.ReactNode;
 }
 
@@ -94,6 +94,7 @@ export function Badge({ variant = 'blue', className, children, ...props }: Badge
     blue: 'safe-badge-blue',
     green: 'safe-badge-green',
     gray: 'safe-badge-gray',
+    red: 'safe-badge-red',
   };
 
   return (
@@ -124,7 +125,7 @@ export function Card({ elevated = false, className, children, ...props }: CardPr
 
 export function CardHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('px-6 py-4 border-b border-safepal-dark-100', className)} {...props}>
+    <div className={cn('px-6 py-4 border-b border-safepal-dark-700', className)} {...props}>
       {children}
     </div>
   );
@@ -140,7 +141,7 @@ export function CardContent({ className, children, ...props }: React.HTMLAttribu
 
 export function CardFooter({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('px-6 py-4 border-t border-safepal-dark-100 bg-safepal-dark-50', className)} {...props}>
+    <div className={cn('px-6 py-4 border-t border-safepal-dark-700 bg-safepal-dark-950', className)} {...props}>
       {children}
     </div>
   );
@@ -164,7 +165,7 @@ export function Avatar({ src, alt, size = 'md', fallback, className, ...props }:
   return (
     <div
       className={cn(
-        'inline-flex items-center justify-center rounded-full bg-safepal-dark-100 text-safepal-dark-600 font-medium overflow-hidden',
+        'inline-flex items-center justify-center rounded-full bg-safepal-dark-800 text-safepal-dark-300 font-medium overflow-hidden',
         sizeClasses[size],
         className
       )}
@@ -187,7 +188,7 @@ export function Separator({ orientation = 'horizontal', className, ...props }: S
   return (
     <div
       className={cn(
-        'bg-safepal-dark-200',
+        'bg-safepal-dark-700',
         orientation === 'horizontal' ? 'w-full h-px' : 'h-full w-px',
         className
       )}
@@ -236,7 +237,7 @@ export function Tabs({ tabs, activeTab, onChange, variant = 'default', className
 
   return (
     <div
-      className={cn('flex border-b border-safepal-dark-200', className)}
+      className={cn('flex border-b border-safepal-dark-700', className)}
       role="tablist"
       aria-label="Tabs"
     >

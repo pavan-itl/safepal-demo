@@ -10,8 +10,8 @@ interface SettingsSectionProps {
 export function SettingsSection({ title, children, className }: SettingsSectionProps) {
   return (
     <Card className={cn('mb-4', className)}>
-      <div className="px-6 py-3 border-b border-safepal-dark-100">
-        <h3 className="text-sm font-semibold text-safepal-dark-900 uppercase tracking-wider">{title}</h3>
+      <div className="px-6 py-3 border-b border-safepal-dark-700">
+        <h3 className="text-sm font-semibold text-safepal-dark-50 uppercase tracking-wider">{title}</h3>
       </div>
       <CardContent className="pt-2 pb-2">{children}</CardContent>
     </Card>
@@ -27,10 +27,10 @@ interface SettingsItemProps {
 
 export function SettingsItem({ label, description, children, className }: SettingsItemProps) {
   return (
-    <div className={cn('px-6 py-4 flex items-center justify-between border-b border-safepal-dark-100 last:border-0', className)}>
+    <div className={cn('px-6 py-4 flex items-center justify-between border-b border-safepal-dark-700 last:border-0', className)}>
       <div className="flex-1">
-        <p className="font-medium text-safepal-dark-900">{label}</p>
-        {description && <p className="text-sm text-safepal-dark-500 mt-0.5">{description}</p>}
+        <p className="font-medium text-safepal-dark-50">{label}</p>
+        {description && <p className="text-sm text-safepal-dark-400 mt-0.5">{description}</p>}
       </div>
       <div className="flex-shrink-0 ml-4">{children}</div>
     </div>
@@ -53,7 +53,7 @@ export function Toggle({ checked, onChange, disabled = false, className }: Toggl
       aria-checked={checked}
       className={cn(
         'relative w-11 h-6 rounded-full transition-colors duration-200',
-        checked ? 'bg-safepal-blue-600' : 'bg-safepal-dark-300',
+        checked ? 'bg-safepal-blue-600' : 'bg-safepal-dark-600',
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
@@ -61,7 +61,7 @@ export function Toggle({ checked, onChange, disabled = false, className }: Toggl
     >
       <span
         className={cn(
-          'absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-200',
+          'absolute top-0.5 w-5 h-5 rounded-full bg-safepal-dark-800 shadow-md transition-transform duration-200',
           checked ? 'translate-x-5' : 'translate-x-0.5'
         )}
         aria-hidden="true"
@@ -99,7 +99,7 @@ export function Select({ label, options, error, className, id, ...props }: Selec
         ))}
       </select>
       {error && (
-        <p className="mt-1.5 text-sm text-safepal-green-600" role="alert">
+        <p className="mt-1.5 text-sm text-safepal-red-400" role="alert">
           {error}
         </p>
       )}
@@ -118,10 +118,10 @@ interface DangerZoneItemProps {
 
 export function DangerZoneItem({ label, description, buttonText, onClick, variant = 'danger', className }: DangerZoneItemProps) {
   return (
-    <div className={cn('px-6 py-4 flex items-center justify-between border-b border-safepal-dark-100 last:border-0', className)}>
+    <div className={cn('px-6 py-4 flex items-center justify-between border-b border-safepal-dark-700 last:border-0', className)}>
       <div className="flex-1">
-        <p className="font-medium text-safepal-dark-900">{label}</p>
-        <p className="text-sm text-safepal-dark-500 mt-0.5">{description}</p>
+        <p className="font-medium text-safepal-dark-50">{label}</p>
+        <p className="text-sm text-safepal-dark-400 mt-0.5">{description}</p>
       </div>
       <Button variant={variant} size="sm" onClick={onClick}>
         {buttonText}
@@ -138,10 +138,10 @@ interface VersionInfoProps {
 
 export function VersionInfo({ version, buildNumber, className }: VersionInfoProps) {
   return (
-    <div className={cn('px-6 py-8 text-center border-t border-safepal-dark-100', className)}>
-      <p className="text-sm text-safepal-dark-500">Version {version}</p>
-      {buildNumber && <p className="text-xs text-safepal-dark-400 mt-1">Build {buildNumber}</p>}
-      <p className="text-xs text-safepal-dark-400 mt-2">SafePal Demo Wallet</p>
+    <div className={cn('px-6 py-8 text-center border-t border-safepal-dark-700', className)}>
+      <p className="text-sm text-safepal-dark-400">Version {version}</p>
+      {buildNumber && <p className="text-xs text-safepal-dark-500 mt-1">Build {buildNumber}</p>}
+      <p className="text-xs text-safepal-dark-500 mt-2">SafePal Demo Wallet</p>
     </div>
   );
 }
@@ -163,23 +163,23 @@ export function WalletSelector({ wallets, onSelect, onAddWallet, className }: Wa
           onClick={() => onSelect(wallet.id)}
           className={cn(
             'w-full safe-card p-4 flex items-center justify-between',
-            wallet.isActive ? 'border-safepal-blue-300 bg-safepal-blue-50' : 'hover:safe-card-elevated'
+            wallet.isActive ? 'border-safepal-blue-300 bg-safepal-blue-900' : 'hover:safe-card-elevated'
           )}
         >
           <div className="flex items-center gap-3">
             <div className={cn(
               'w-10 h-10 rounded-xl flex items-center justify-center text-white font-medium flex-shrink-0',
-              wallet.isActive ? 'bg-safepal-blue-600' : 'bg-safepal-dark-300'
+              wallet.isActive ? 'bg-safepal-blue-600' : 'bg-safepal-dark-600'
             )}>
               {wallet.name.charAt(0).toUpperCase()}
             </div>
             <div>
-              <p className="font-medium text-safepal-dark-900">{wallet.name}</p>
-              <p className="text-sm text-safepal-dark-500 font-mono">{wallet.address}</p>
+              <p className="font-medium text-safepal-dark-50">{wallet.name}</p>
+              <p className="text-sm text-safepal-dark-400 font-mono">{wallet.address}</p>
             </div>
           </div>
           {wallet.isActive && (
-            <svg className="w-5 h-5 text-safepal-blue-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <svg className="w-5 h-5 text-safepal-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
           )}

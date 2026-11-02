@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
@@ -37,17 +38,39 @@
   --color-safepal-green-700: #15803D;
   --color-safepal-green-800: #166534;
   --color-safepal-green-900: #14532D;
+
+  --color-safepal-red-50: #FEF2F2;
+  --color-safepal-red-100: #FEE2E2;
+  --color-safepal-red-200: #FECACA;
+  --color-safepal-red-300: #FCA5A5;
+  --color-safepal-red-400: #F87171;
+  --color-safepal-red-500: #EF4444;
+  --color-safepal-red-600: #DC2626;
+  --color-safepal-red-700: #B91C1C;
+  --color-safepal-red-800: #991B1B;
+  --color-safepal-red-900: #7F1D1D;
 }
 
 @layer base {
   * {
-    @apply border-safepal-dark-200;
+    @apply border-safepal-dark-700;
   }
 
   body {
-    @apply bg-safepal-dark-50 text-safepal-dark-900 antialiased;
+    @apply bg-safepal-dark-950 text-safepal-dark-50 antialiased font-sans text-base;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+
+  h1 { @apply text-3xl font-bold text-safepal-dark-50; }
+  h2 { @apply text-2xl font-semibold text-safepal-dark-50; }
+  h3 { @apply text-lg font-semibold text-safepal-dark-50; }
+  h4 { @apply text-base font-semibold text-safepal-dark-50; }
+  p { @apply text-base text-safepal-dark-50; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #0F172A; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
   html {
     @apply scroll-smooth;
@@ -67,11 +90,11 @@
 }
 
 @utility safe-card {
-  @apply bg-white rounded-2xl shadow-sm border border-safepal-dark-100 overflow-hidden transition-all duration-200;
+  @apply bg-safepal-dark-800 rounded-2xl shadow-sm border border-safepal-dark-700 overflow-hidden transition-all duration-200;
 }
 
 @utility safe-card-elevated {
-  @apply safe-card shadow-lg border-safepal-dark-200;
+  @apply safe-card shadow-lg border-safepal-dark-600;
 }
 
   @utility safe-btn {
@@ -83,31 +106,31 @@
 }
 
 @utility safe-btn-secondary {
-  @apply safe-btn bg-safepal-dark-100 text-safepal-dark-900 hover:bg-safepal-dark-200 active:bg-safepal-dark-300 focus-visible:ring-safepal-dark-400;
+  @apply safe-btn bg-safepal-dark-700 text-safepal-dark-50 hover:bg-safepal-dark-600 active:bg-safepal-dark-500 focus-visible:ring-safepal-dark-400;
 }
 
 @utility safe-btn-ghost {
-  @apply safe-btn bg-transparent text-safepal-dark-600 hover:bg-safepal-dark-100 active:bg-safepal-dark-200 focus-visible:ring-safepal-dark-400;
+  @apply safe-btn bg-transparent text-safepal-dark-300 hover:bg-safepal-dark-700 active:bg-safepal-dark-600 focus-visible:ring-safepal-dark-400;
 }
 
 @utility safe-btn-danger {
-  @apply safe-btn bg-safepal-green-50 text-safepal-green-700 hover:bg-safepal-green-100 active:bg-safepal-green-200 focus-visible:ring-safepal-green-400;
+  @apply safe-btn bg-safepal-red-900 text-safepal-red-300 hover:bg-safepal-red-800 active:bg-safepal-red-700 focus-visible:ring-safepal-red-400;
 }
 
 @utility safe-btn-outline {
-  @apply safe-btn border border-safepal-dark-200 bg-white text-safepal-dark-700 hover:bg-safepal-dark-50 active:bg-safepal-dark-100 focus-visible:ring-safepal-dark-400;
+  @apply safe-btn border border-safepal-dark-700 bg-safepal-dark-800 text-safepal-dark-300 hover:bg-safepal-dark-700 active:bg-safepal-dark-600 focus-visible:ring-safepal-dark-400;
 }
 
 @utility safe-input {
-  @apply w-full px-4 py-3 rounded-xl border border-safepal-dark-200 bg-white text-safepal-dark-900 placeholder-safepal-dark-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-safepal-blue-500 focus:border-transparent;
+  @apply w-full px-4 py-3 rounded-xl border border-safepal-dark-700 bg-safepal-dark-800 text-safepal-dark-50 placeholder-safepal-dark-500 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-safepal-blue-500 focus:border-transparent;
 }
 
 @utility safe-input-error {
-  @apply border-safepal-green-500 focus:ring-safepal-green-500;
+  @apply border-safepal-red-500 focus:ring-safepal-red-500;
 }
 
 @utility safe-label {
-  @apply block text-sm font-medium text-safepal-dark-700 mb-1.5;
+  @apply block text-sm font-medium text-safepal-dark-300 mb-1.5;
 }
 
 @utility safe-badge {
@@ -115,23 +138,27 @@
 }
 
 @utility safe-badge-blue {
-  @apply safe-badge bg-safepal-blue-50 text-safepal-blue-700;
+  @apply safe-badge bg-safepal-blue-900 text-safepal-blue-300;
 }
 
 @utility safe-badge-green {
-  @apply safe-badge bg-safepal-green-50 text-safepal-green-700;
+  @apply safe-badge bg-safepal-green-900 text-safepal-green-300;
 }
 
 @utility safe-badge-gray {
-  @apply safe-badge bg-safepal-dark-100 text-safepal-dark-600;
+  @apply safe-badge bg-safepal-dark-700 text-safepal-dark-300;
+}
+
+@utility safe-badge-red {
+  @apply safe-badge bg-safepal-red-900 text-safepal-red-300;
 }
 
 @utility safe-tab {
-  @apply flex-1 flex flex-col items-center gap-1 py-3 px-2 text-safepal-dark-400 transition-colors duration-200;
+  @apply flex-1 flex flex-col items-center gap-1 py-3 px-2 text-safepal-dark-500 transition-colors duration-200;
 }
 
 @utility safe-tab-active {
-  @apply text-safepal-blue-600;
+  @apply text-safepal-blue-400;
 }
 
 @utility safe-tab-icon {
@@ -143,11 +170,11 @@
 }
 
 @utility safe-header {
-  @apply sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-safepal-dark-100;
+  @apply sticky top-0 z-40 bg-safepal-dark-900/80 backdrop-blur-md border-b border-safepal-dark-700;
 }
 
 @utility safe-bottom-nav {
-  @apply fixed bottom-0 left-0 right-0 bg-white border-t border-safepal-dark-100 safe-area-bottom;
+  @apply fixed bottom-0 left-0 right-0 bg-safepal-dark-900 border-t border-safepal-dark-700 safe-area-bottom;
 }
 
 @utility safe-page {
@@ -178,7 +205,7 @@
 
   .gradient-border {
     position: relative;
-    background: white;
+    background: #FFFFFF;
     border-radius: 1rem;
   }
 
@@ -187,7 +214,7 @@
     position: absolute;
     inset: -1px;
     border-radius: 1rem;
-    background: linear-gradient(135deg, #3B82F6, #22C55E);
+    background: linear-gradient(135deg, var(--color-safepal-blue-600), var(--color-safepal-blue-400));
     z-index: -1;
     opacity: 0;
     transition: opacity 0.3s;

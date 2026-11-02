@@ -64,7 +64,7 @@ export function AppLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-safepal-dark-50 flex flex-col">
+    <div className="min-h-screen bg-safepal-dark-950 flex flex-col">
       <Outlet />
       <BottomNav items={navItems} activeItem={activeTab} onChange={handleTabChange} />
     </div>
