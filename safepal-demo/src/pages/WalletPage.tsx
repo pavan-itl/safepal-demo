@@ -1,164 +1,164 @@
 import { useState } from 'react';
 import { useDemoData } from '../context/DemoDataContext';
-import { Header } from '../components/Header';
-import { TokenList, PortfolioSummary } from '../components/TokenComponents';
-import { cn } from '../utils/helpers';
-import { Card, Button, Input } from '../components/ui';
+import { cn, formatNumber } from '../utils/helpers';
+import { Input } from '../components/ui';
+import {
+  Hexagon,
+  Bell,
+  ScanLine,
+  Copy,
+  ChevronDown,
+  Eye,
+  EyeOff,
+  ArrowUp,
+  ArrowDown,
+  CreditCard,
+  Fuel,
+  MoreVertical,
+  Search,
+} from 'lucide-react';
 
 export function WalletPage() {
+  const { tokens, totalValue } = useDemoData();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTab, setSelectedTab] = useState<'all' | 'tokens' | 'nfts' | 'defi'>('all');
+  const [showBalance, setShowBalance] = useState(true);
+  const [activeTab, setActiveTab] = useState<'coin' | 'earn' | 'nft'>('coin');
 
-  const { tokens, totalValue, change24h } = useDemoData();
-  const filteredTokens = tokens.filter(
-    (token) =>
-      token.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      token.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredTokens = tokens.filter((token) =>
+    token.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    token.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  const changeValue24h = totalValue * (change24h / 100);
+
+  const btcToken = tokens.find((t) => t.symbol === 'BTC');
 
   return (
     <div className="safe-page-full safe-area-bottom pb-24">
-      <Header
-        title="Wallet"
-        actions={
-          <button className="p-2 rounded-xl text-safepal-dark-300 hover:bg-safepal-dark-700 active:bg-safepal-dark-600 transition-colors" aria-label="More options">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-            </svg>
+      <header className="safe-header safe-area-top">
+        <div className="safe-container flex items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-3">
+            <button className="w-10 h-10 rounded-full bg-safepal-dark-800 flex items-center justify-center" aria-label="Settings">
+              <Hexagon className="w-5 h-5" />
+            </button>
+            <button className="w-10 h-10 rounded-full bg-safepal-dark-800 flex items-center justify-center" aria-label="Notifications">
+              <Bell className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="flex items-center gap-2">
+            <button className="flex items-center gap-1 px-3 py-2 rounded-xl bg-safepal-dark-800 text-safepal-dark-50 text-sm font-medium">
+              Wallet01-S2J
+              <ChevronDown className="w-4 h-4" />
+            </button>
+            <button className="w-10 h-10 rounded-full bg-safepal-dark-800 flex items-center justify-center" aria-label="Copy address">
+              <Copy className="w-5 h-5" />
+            </button>
+          </div>
+          <button className="w-10 h-10 rounded-full bg-safepal-dark-800 flex items-center justify-center" aria-label="Scan">
+            <ScanLine className="w-5 h-5" />
           </button>
-        }
-      />
+        </div>
+      </header>
 
-      <main className="safe-container px-4 pb-8">
-        <PortfolioSummary
-          totalValue={totalValue}
-          change24h={change24h}
-          changeValue24h={changeValue24h}
-        />
-
-        <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4" role="tablist" aria-label="Asset categories">
-          {['all', 'tokens', 'nfts', 'defi'].map((tab) => (
+      <div className="safe-container px-4">
+        <div className="flex items-center justify-around border-b border-safepal-dark-700 py-2">
+          {(['coin', 'earn', 'nft'] as const).map((tab) => (
             <button
               key={tab}
-              onClick={() => setSelectedTab(tab as typeof selectedTab)}
+              onClick={() => setActiveTab(tab)}
               className={cn(
-                'px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors',
-                selectedTab === tab
-                  ? 'bg-safepal-dark-600 text-white'
-                  : 'text-safepal-dark-300 hover:bg-safepal-dark-700'
+                'px-4 py-2 text-sm font-semibold',
+                activeTab === tab ? 'text-safepal-dark-50 border-b-2 border-safepal-dark-50' : 'text-safepal-dark-400'
               )}
-              role="tab"
-              aria-selected={selectedTab === tab}
-              aria-controls={`${tab}-panel`}
-              id={`${tab}-tab`}
             >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {tab === 'coin' ? 'Coin' : tab === 'earn' ? 'Earn' : 'NFT'}
             </button>
           ))}
         </div>
 
-        <div className="mt-4">
-          <Input
-            placeholder="Search assets..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="max-w-xs"
-          />
+        <div className="text-center py-6">
+          <div className="flex items-center justify-center gap-2 text-safepal-dark-400 text-sm mb-2">
+            <span>Balance</span>
+            <button onClick={() => setShowBalance(!showBalance)} aria-label="Toggle balance">
+              {showBalance ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+            </button>
+          </div>
+          <div className="text-4xl font-bold text-safepal-dark-50">
+            {showBalance ? formatNumber(totalValue, { currency: true }) : '••••'}
+          </div>
+          <div className="text-safepal-dark-400 text-sm mt-1">
+            {showBalance ? `${formatNumber(btcToken?.balance || 0, { decimals: 4 })} BTC` : ''}
+          </div>
         </div>
 
-        <div className="mt-4" role="tabpanel" id={`${selectedTab}-panel`} aria-labelledby={`${selectedTab}-tab`}>
-          {selectedTab === 'tokens' && (
-            <TokenList
-              tokens={filteredTokens}
-              variant="default"
-              onTokenClick={(token) => alert(`${token.symbol} details`)}
-              showActions={true}
-              emptyMessage="No tokens found"
+        <div className="grid grid-cols-5 gap-2 sm:gap-3 mb-4" role="list">
+          {[
+            { id: 'send', label: 'Send', icon: <ArrowUp className="w-5 h-5" />, onClick: () => alert('Send clicked') },
+            { id: 'receive', label: 'Receive', icon: <ArrowDown className="w-5 h-5" />, onClick: () => alert('Receive clicked') },
+            { id: 'buy', label: 'Buy', icon: <CreditCard className="w-5 h-5" />, onClick: () => alert('Buy clicked') },
+            { id: 'gas', label: 'Gas Station', icon: <Fuel className="w-5 h-5" />, onClick: () => alert('Gas Station (demo)') },
+            { id: 'more', label: 'More', icon: <MoreVertical className="w-5 h-5" />, onClick: () => alert('More actions') },
+          ].map((action) => (
+            <button
+              key={action.id}
+              onClick={action.onClick}
+              className="p-4 flex flex-col items-center gap-2 text-center rounded-xl border-0 shadow-none bg-transparent transition-all duration-200 hover:bg-safepal-dark-800/40 active:bg-safepal-dark-700/40"
+              role="listitem"
+              aria-label={action.label}
+            >
+              <div className="w-12 h-12 rounded-full bg-safepal-dark-800 flex items-center justify-center text-safepal-dark-400">
+                {action.icon}
+              </div>
+              <span className="text-xs font-medium text-safepal-dark-50">{action.label}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2 mb-4">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-safepal-dark-400" />
+            <Input
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
             />
-          )}
-
-          {selectedTab === 'nfts' && (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <svg className="w-16 h-16 text-safepal-dark-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <h3 className="text-lg font-medium text-safepal-dark-50 mb-1">No NFTs yet</h3>
-              <p className="text-safepal-dark-400 mb-4">Your NFTs will appear here</p>
-              <Button variant="outline" onClick={() => alert('Browse NFTs')}>
-                Browse NFTs
-              </Button>
-            </div>
-          )}
-
-          {selectedTab === 'defi' && (
-            <div className="space-y-4">
-              <Card>
-                <div className="p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-safepal-dark-900 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-safepal-dark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-safepal-dark-50">Staking</h3>
-                      <p className="text-sm text-safepal-dark-400">Earn rewards on your assets</p>
-                    </div>
-                  </div>
-                  <Button variant="primary" size="sm">Stake Now</Button>
-                </div>
-              </Card>
-
-              <Card>
-                <div className="p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-safepal-dark-900 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-safepal-dark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-safepal-dark-50">Swap</h3>
-                      <p className="text-sm text-safepal-dark-400">Exchange tokens instantly</p>
-                    </div>
-                  </div>
-                  <Button variant="primary" size="sm">Swap</Button>
-                </div>
-              </Card>
-
-              <Card>
-                <div className="p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-safepal-dark-900 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-safepal-dark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-safepal-dark-50">DApps</h3>
-                      <p className="text-sm text-safepal-dark-400">Explore decentralized apps</p>
-                    </div>
-                  </div>
-                  <Button variant="outline" size="sm">Explore</Button>
-                </div>
-              </Card>
-            </div>
-          )}
-
-          {selectedTab === 'all' && (
-            <>
-              <TokenList
-                tokens={filteredTokens}
-                variant="default"
-                onTokenClick={(token) => alert(`${token.symbol} details`)}
-                showActions={true}
-                emptyMessage="No tokens found"
-              />
-            </>
-          )}
+          </div>
+          <button className="px-3 py-2 rounded-xl bg-safepal-dark-800 text-safepal-dark-50 text-sm flex items-center gap-1">
+            All
+            <ChevronDown className="w-4 h-4" />
+          </button>
+          <button className="w-10 h-10 rounded-full bg-safepal-dark-800 flex items-center justify-center" aria-label="Options">
+            <MoreVertical className="w-5 h-5" />
+          </button>
         </div>
-      </main>
+
+        <div className="space-y-2 pb-24">
+          {filteredTokens.map((token) => {
+            const isPositive = token.change24h >= 0;
+            return (
+              <div
+                key={token.id}
+                className="flex justify-between items-center p-3 mb-2 rounded-xl bg-safepal-dark-800 border border-safepal-dark-700"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <img src={token.icon} alt="" className="w-10 h-10 rounded-full object-cover" />
+                  <div className="min-w-0">
+                    <div className="font-medium text-safepal-dark-50">{token.symbol}</div>
+                    <div className="text-xs text-safepal-dark-400">{token.network}</div>
+                    <div className="text-xs text-safepal-dark-400">${token.price.toFixed(2)}</div>
+                    <div className={cn('text-xs', isPositive ? 'text-green-500' : 'text-red-500')}>
+                      {isPositive ? '+' : ''}{token.change24h.toFixed(2)}%
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="font-medium text-safepal-dark-50">{formatNumber(token.balance, { decimals: 4 })}</div>
+                  <div className="text-xs text-safepal-dark-400">{formatNumber(token.value, { currency: true })}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

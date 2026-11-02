@@ -1,6 +1,7 @@
 import type { Token } from '../types';
 import { cn, formatNumber, formatAddress } from '../utils/helpers';
 import { Card, Button } from './ui';
+import { ArrowUp, ArrowDown, ShoppingCart, Fuel, MoreHorizontal } from 'lucide-react';
 
 interface TokenCardProps {
   token: Token;
@@ -171,49 +172,35 @@ interface PortfolioSummaryProps {
 
 export function PortfolioSummary({ totalValue, change24h: _change24h, changeValue24h: _changeValue24h, className }: PortfolioSummaryProps) {
   return (
-    <Card elevated className={cn('p-6', className)}>
+    <div className={cn('p-6 bg-transparent', className)}>
       <div>
         <p className="text-safepal-dark-500 text-sm mb-2">Total Portfolio Value</p>
-        <div className="text-3xl font-bold text-safepal-dark-900">${formatNumber(totalValue, { currency: true })}</div>
+        <div className="text-3xl font-bold text-safepal-dark-900">{formatNumber(totalValue, { currency: true })}</div>
       </div>
-    </Card>
+    </div>
   );
 }
 
 interface QuickActionsProps {
   onSend?: () => void;
   onReceive?: () => void;
-  onSwap?: () => void;
   onBuy?: () => void;
+  onGasStation?: () => void;
+  onMore?: () => void;
   className?: string;
 }
 
-export function QuickActions({ onSend, onReceive, onSwap, onBuy, className }: QuickActionsProps) {
+export function QuickActions({ onSend, onReceive, onBuy, onGasStation, onMore, className }: QuickActionsProps) {
   const actions = [
-    { id: 'send', label: 'Send', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-      </svg>
-    ), onClick: onSend },
-    { id: 'receive', label: 'Receive', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5l-9 2 9 18 9-18-9-2zm0 0v8" />
-      </svg>
-    ), onClick: onReceive },
-    { id: 'swap', label: 'Swap', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-      </svg>
-    ), onClick: onSwap },
-    { id: 'buy', label: 'Buy', icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-      </svg>
-    ), onClick: onBuy },
+    { id: 'send', label: 'Send', icon: <ArrowUp className="w-5 h-5" />, onClick: onSend },
+    { id: 'receive', label: 'Receive', icon: <ArrowDown className="w-5 h-5" />, onClick: onReceive },
+    { id: 'buy', label: 'Buy', icon: <ShoppingCart className="w-5 h-5" />, onClick: onBuy },
+    { id: 'gas', label: 'Gas Station', icon: <Fuel className="w-5 h-5" />, onClick: onGasStation },
+    { id: 'more', label: 'More', icon: <MoreHorizontal className="w-5 h-5" />, onClick: onMore },
   ];
 
   return (
-    <div className={cn('grid grid-cols-4 gap-3', className)} role="list">
+    <div className={cn('grid grid-cols-5 gap-2 sm:gap-3', className)} role="list">
       {actions.map((action) => (
         <button
           key={action.id}

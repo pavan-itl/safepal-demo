@@ -40,8 +40,9 @@ export function DashboardPage() {
         <QuickActions
           onSend={() => alert('Send clicked')}
           onReceive={() => alert('Receive clicked')}
-          onSwap={() => alert('Swap clicked')}
           onBuy={() => alert('Buy clicked')}
+          onGasStation={() => alert('Gas Station (demo)')}
+          onMore={() => alert('More actions')}
           className="mt-6"
         />
 

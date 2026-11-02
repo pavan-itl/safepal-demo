@@ -13,9 +13,9 @@
   --color-safepal-dark-500: #64748B;
   --color-safepal-dark-600: #475569;
   --color-safepal-dark-700: #334155;
-  --color-safepal-dark-800: #1E293B;
-  --color-safepal-dark-900: #0F172A;
-  --color-safepal-dark-950: #020617;
+  --color-safepal-dark-800: #1c1d1f;
+  --color-safepal-dark-900: #1c1d1f;
+  --color-safepal-dark-950: #111015;
 }
 
 @layer base {
@@ -125,7 +125,7 @@
 }
 
 @utility safe-tab-active {
-  @apply text-safepal-dark-400;
+  @apply text-green-500;
 }
 
 @utility safe-tab-icon {
