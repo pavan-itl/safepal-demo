@@ -124,7 +124,7 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="tx-detail-title">
       <div className="absolute inset-0 bg-safepal-dark-950/50" onClick={onClose} aria-hidden="true" />
-      <div className="relative w-full max-w-md bg-safepal-dark-800 rounded-t-2xl sm:rounded-2xl safe-area-bottom max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-md bg-transparent border border-safepal-dark-700 rounded-t-2xl sm:rounded-2xl safe-area-bottom max-h-[90vh] overflow-y-auto">
         <div className="p-4 border-b border-safepal-dark-700 flex items-center justify-between sticky top-0 bg-safepal-dark-800 rounded-t-2xl sm:rounded-2xl">
           <h2 id="tx-detail-title" className="text-lg font-semibold text-safepal-dark-50">Transaction Details</h2>
           <button onClick={onClose} className="p-2 rounded-xl text-safepal-dark-400 hover:bg-safepal-dark-700" aria-label="Close">

@@ -169,33 +169,12 @@ interface PortfolioSummaryProps {
   className?: string;
 }
 
-export function PortfolioSummary({ totalValue, change24h, changeValue24h, className }: PortfolioSummaryProps) {
-  const isPositive = change24h >= 0;
-
+export function PortfolioSummary({ totalValue, change24h: _change24h, changeValue24h: _changeValue24h, className }: PortfolioSummaryProps) {
   return (
     <Card elevated className={cn('p-6', className)}>
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-safepal-dark-400 text-sm mb-2">Total Portfolio Value</p>
-          <div className="text-3xl font-bold text-safepal-dark-50">${formatNumber(totalValue, { currency: true })}</div>
-        </div>
-        <div className="text-right">
-            <div className={cn('text-lg font-semibold', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-400')}>
-              {isPositive ? '+' : ''}{change24h.toFixed(2)}%
-            </div>
-            <div className={cn('text-sm', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-400')}>
-              {isPositive ? '+' : ''}${formatNumber(Math.abs(changeValue24h), { currency: true })}
-            </div>
-        </div>
-      </div>
-      <div className="mt-6 h-32 bg-gradient-to-r from-safepal-dark-500/10 to-safepal-dark-600/10 rounded-xl flex items-end justify-around p-4" role="img" aria-label="Portfolio value chart over 24 hours">
-        {[0.3, 0.45, 0.35, 0.6, 0.5, 0.7, 0.65, 0.8, 0.75, 0.9, 0.85, 1].map((height, i) => (
-          <div
-            key={i}
-            className="w-6 bg-gradient-to-t from-safepal-dark-500 to-safepal-dark-400 rounded-t transition-all duration-300"
-            style={{ height: `${height * 100}%` }}
-          />
-        ))}
+      <div>
+        <p className="text-safepal-dark-500 text-sm mb-2">Total Portfolio Value</p>
+        <div className="text-3xl font-bold text-safepal-dark-900">${formatNumber(totalValue, { currency: true })}</div>
       </div>
     </Card>
   );
@@ -240,8 +219,7 @@ export function QuickActions({ onSend, onReceive, onSwap, onBuy, className }: Qu
           key={action.id}
           onClick={action.onClick}
           className={cn(
-            'safe-card p-4 flex flex-col items-center gap-2 text-center',
-            'hover:safe-card-elevated transition-all duration-200'
+            'p-4 flex flex-col items-center gap-2 text-center rounded-xl border-0 shadow-none bg-transparent transition-all duration-200 hover:bg-safepal-dark-800/40 active:bg-safepal-dark-700/40'
           )}
           role="listitem"
           aria-label={action.label}

@@ -141,7 +141,7 @@ export function CardContent({ className, children, ...props }: React.HTMLAttribu
 
 export function CardFooter({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('px-6 py-4 border-t border-safepal-dark-700 bg-safepal-dark-950', className)} {...props}>
+    <div className={cn('px-6 py-4 border-t border-safepal-dark-700 bg-transparent', className)} {...props}>
       {children}
     </div>
   );
