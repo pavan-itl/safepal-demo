@@ -5,6 +5,7 @@ import { WalletPage } from './pages/WalletPage';
 import { MarketPage } from './pages/MarketPage';
 import { TransactionsPage } from './pages/TransactionsPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { DemoManagerPage } from './pages/DemoManagerPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="market" element={<MarketPage />} />
           <Route path="transactions" element={<TransactionsPage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="manage" element={<DemoManagerPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

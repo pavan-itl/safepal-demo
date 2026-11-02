@@ -48,7 +48,7 @@ export function HeaderAction({ icon, label, variant = 'ghost', className, onClic
       onClick={onClick}
       className={cn(
         'p-2 rounded-xl text-safepal-dark-300 hover:bg-safepal-dark-700 active:bg-safepal-dark-600 transition-colors',
-        variant === 'primary' && 'bg-safepal-blue-600 text-white hover:bg-safepal-blue-700',
+        variant === 'primary' && 'bg-safepal-dark-600 text-white hover:bg-safepal-dark-700',
         className
       )}
       aria-label={label}
@@ -86,7 +86,7 @@ export function SearchBar({ placeholder = 'Search tokens...', value, onChange, o
           onChange={(e) => onChange(e.target.value)}
           onFocus={onFocus}
           placeholder={placeholder}
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-safepal-dark-800 text-safepal-dark-50 placeholder-safepal-dark-400 text-sm focus:outline-none focus:ring-2 focus:ring-safepal-blue-500 focus:bg-safepal-dark-800"
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-safepal-dark-800 text-safepal-dark-50 placeholder-safepal-dark-400 text-sm focus:outline-none focus:ring-2 focus:ring-safepal-dark-500 focus:bg-safepal-dark-800"
           aria-label={placeholder}
         />
       </div>

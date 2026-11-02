@@ -11,12 +11,12 @@ interface TransactionItemProps {
 export function TransactionItem({ transaction, onClick, className }: TransactionItemProps) {
   const isPositive = transaction.type === 'receive';
   const typeColors = {
-    send: 'bg-safepal-red-900 text-safepal-red-300',
-    receive: 'bg-safepal-green-900 text-safepal-green-300',
-    swap: 'bg-safepal-blue-900 text-safepal-blue-300',
-    stake: 'bg-safepal-blue-900 text-safepal-blue-300',
-    unstake: 'bg-safepal-blue-900 text-safepal-blue-300',
-    claim: 'bg-safepal-green-900 text-safepal-green-300',
+    send: 'bg-safepal-dark-900 text-safepal-dark-300',
+    receive: 'bg-safepal-dark-900 text-safepal-dark-300',
+    swap: 'bg-safepal-dark-900 text-safepal-dark-300',
+    stake: 'bg-safepal-dark-900 text-safepal-dark-300',
+    unstake: 'bg-safepal-dark-900 text-safepal-dark-300',
+    claim: 'bg-safepal-dark-900 text-safepal-dark-300',
   };
 
   const typeIcons = {
@@ -78,7 +78,7 @@ export function TransactionItem({ transaction, onClick, className }: Transaction
             <Badge variant="gray" className="text-xs">{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</Badge>
           </div>
           <div className="text-right flex-shrink-0">
-            <div className={cn('font-semibold', isPositive ? 'text-safepal-green-400' : 'text-safepal-dark-50')}>
+            <div className={cn('font-semibold', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-50')}>
               {isPositive ? '+' : '-'}{formatNumber(transaction.value, { currency: true })}
             </div>
             <div className="text-xs text-safepal-dark-400">{formatDate(transaction.timestamp)}</div>
@@ -113,12 +113,12 @@ interface TransactionDetailProps {
 export function TransactionDetail({ transaction, onClose }: TransactionDetailProps) {
   const isPositive = transaction.type === 'receive';
   const typeColors = {
-    send: 'bg-safepal-red-900 text-safepal-red-300',
-    receive: 'bg-safepal-green-900 text-safepal-green-300',
-    swap: 'bg-safepal-blue-900 text-safepal-blue-300',
-    stake: 'bg-safepal-blue-900 text-safepal-blue-300',
-    unstake: 'bg-safepal-blue-900 text-safepal-blue-300',
-    claim: 'bg-safepal-green-900 text-safepal-green-300',
+    send: 'bg-safepal-dark-900 text-safepal-dark-300',
+    receive: 'bg-safepal-dark-900 text-safepal-dark-300',
+    swap: 'bg-safepal-dark-900 text-safepal-dark-300',
+    stake: 'bg-safepal-dark-900 text-safepal-dark-300',
+    unstake: 'bg-safepal-dark-900 text-safepal-dark-300',
+    claim: 'bg-safepal-dark-900 text-safepal-dark-300',
   };
 
   return (
@@ -139,7 +139,7 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
               <span className="text-2xl" aria-hidden="true">{transaction.token.symbol}</span>
             </div>
             <div className="text-right">
-              <div className={cn('text-2xl font-bold', isPositive ? 'text-safepal-green-400' : 'text-safepal-dark-50')}>
+              <div className={cn('text-2xl font-bold', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-50')}>
                 {isPositive ? '+' : '-'}{formatNumber(transaction.value, { currency: true })}
               </div>
               <div className="text-sm text-safepal-dark-400">{formatDateTime(transaction.timestamp)}</div>

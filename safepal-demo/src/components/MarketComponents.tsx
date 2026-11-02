@@ -119,7 +119,7 @@ export function MarketHeader({ searchQuery, onSearchChange }: MarketHeaderProps)
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search markets..."
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-safepal-dark-800 text-safepal-dark-50 placeholder-safepal-dark-400 text-sm focus:outline-none focus:ring-2 focus:ring-safepal-blue-500 focus:bg-safepal-dark-800"
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-safepal-dark-800 text-safepal-dark-50 placeholder-safepal-dark-400 text-sm focus:outline-none focus:ring-2 focus:ring-safepal-dark-500 focus:bg-safepal-dark-800"
           aria-label="Search markets"
         />
       </div>
@@ -135,9 +135,9 @@ interface PriceChartProps {
 
 export function PriceChart({ data, color = 'blue', className }: PriceChartProps) {
   const colorClasses = {
-    green: 'bg-gradient-to-t from-safepal-green-500 to-safepal-green-400',
-    red: 'bg-gradient-to-t from-safepal-red-600 to-safepal-red-400',
-    blue: 'bg-gradient-to-t from-safepal-blue-500 to-safepal-blue-400',
+    green: 'bg-gradient-to-t from-safepal-dark-500 to-safepal-dark-400',
+    red: 'bg-gradient-to-t from-safepal-dark-600 to-safepal-dark-400',
+    blue: 'bg-gradient-to-t from-safepal-dark-500 to-safepal-dark-400',
   };
 
   const min = Math.min(...data);

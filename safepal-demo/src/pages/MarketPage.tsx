@@ -47,7 +47,7 @@ export function MarketPage() {
               {topGainers.map((token) => (
                 <div key={token.symbol} className="flex items-center justify-between py-2 border-b border-safepal-dark-700 last:border-0">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-safepal-green-900 flex items-center justify-center overflow-hidden">
+                    <div className="w-8 h-8 rounded-full bg-safepal-dark-900 flex items-center justify-center overflow-hidden">
                       <img
                         src={`https://assets.coingecko.com/coins/images/1/large/${token.symbol.toLowerCase()}.png`}
                         alt=""
@@ -61,7 +61,7 @@ export function MarketPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-safepal-green-400">+{token.change24h.toFixed(2)}%</p>
+                    <p className="text-sm font-semibold text-safepal-dark-400">+{token.change24h.toFixed(2)}%</p>
                     <p className="text-xs text-safepal-dark-400">${formatNumber(token.volume24h, { compact: true, currency: true })}</p>
                   </div>
                 </div>
@@ -78,7 +78,7 @@ export function MarketPage() {
               {topLosers.map((token) => (
                 <div key={token.symbol} className="flex items-center justify-between py-2 border-b border-safepal-dark-700 last:border-0">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-safepal-red-900 flex items-center justify-center overflow-hidden">
+                    <div className="w-8 h-8 rounded-full bg-safepal-dark-900 flex items-center justify-center overflow-hidden">
                       <img
                         src={`https://assets.coingecko.com/coins/images/1/large/${token.symbol.toLowerCase()}.png`}
                         alt=""
@@ -92,7 +92,7 @@ export function MarketPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-safepal-red-400">{token.change24h.toFixed(2)}%</p>
+                    <p className="text-sm font-semibold text-safepal-dark-400">{token.change24h.toFixed(2)}%</p>
                     <p className="text-xs text-safepal-dark-400">${formatNumber(token.volume24h, { compact: true, currency: true })}</p>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export function MarketPage() {
               className={cn(
                 'px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors',
                 sortBy === sort
-                  ? 'bg-safepal-blue-600 text-white'
+                  ? 'bg-safepal-dark-600 text-white'
                   : 'text-safepal-dark-300 hover:bg-safepal-dark-700'
               )}
               role="tab"

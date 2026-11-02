@@ -71,7 +71,7 @@ export function Input({ label, error, helperText, className, id, ...props }: Inp
         {...props}
       />
       {error && (
-        <p id={`${inputId}-error`} className="mt-1.5 text-sm text-safepal-red-400" role="alert">
+        <p id={`${inputId}-error`} className="mt-1.5 text-sm text-safepal-dark-400" role="alert">
           {error}
         </p>
       )}

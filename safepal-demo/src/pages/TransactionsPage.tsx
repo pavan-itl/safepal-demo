@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { demoTransactions } from '../data/demoData';
+import { useDemoData } from '../context/DemoDataContext';
 import { Header } from '../components/Header';
 import { TransactionList, TransactionDetail } from '../components/TransactionComponents';
 import { cn } from '../utils/helpers';
@@ -11,7 +11,8 @@ export function TransactionsPage() {
   const [filter, setFilter] = useState<'all' | 'send' | 'receive' | 'swap' | 'stake'>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredTransactions = demoTransactions.filter((tx) => {
+  const { transactions } = useDemoData();
+  const filteredTransactions = transactions.filter((tx) => {
     const matchesFilter = filter === 'all' || tx.type === filter;
     const matchesSearch =
       tx.token.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -43,7 +44,7 @@ export function TransactionsPage() {
               className={cn(
                 'px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors',
                 filter === f
-                  ? 'bg-safepal-blue-600 text-white'
+                  ? 'bg-safepal-dark-600 text-white'
                   : 'text-safepal-dark-300 hover:bg-safepal-dark-700'
               )}
               role="tab"

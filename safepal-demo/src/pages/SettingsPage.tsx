@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import {
   SettingsSection,
@@ -18,6 +19,7 @@ const demoWallets = [
 ];
 
 export function SettingsPage() {
+  const navigate = useNavigate();
   const [activeWalletId, setActiveWalletId] = useState('1');
   const [currency, setCurrency] = useState('USD');
   const [language, setLanguage] = useState('en');
@@ -225,6 +227,17 @@ export function SettingsPage() {
             buttonText="Delete"
             onClick={() => alert('Data deleted')}
           />
+        </SettingsSection>
+
+        <SettingsSection title="Demo Management">
+          <SettingsItem
+            label="Demo Wallet Manager"
+            description="Manually manage simulated balances, assets and transactions"
+          >
+            <Button variant="primary" size="sm" onClick={() => navigate('/manage')}>
+              Open
+            </Button>
+          </SettingsItem>
         </SettingsSection>
 
         <VersionInfo version="1.0.0" buildNumber="2024.11.01" />

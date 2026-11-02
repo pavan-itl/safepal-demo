@@ -30,7 +30,7 @@ export function TokenCard({ token, variant = 'default', onClick, showActions = f
           <div className="flex items-center gap-2">
             <span className="font-medium text-safepal-dark-50 truncate">{token.symbol}</span>
             {token.isVerified && (
-              <svg className="w-4 h-4 text-safepal-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <svg className="w-4 h-4 text-safepal-dark-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                 <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
             )}
@@ -39,7 +39,7 @@ export function TokenCard({ token, variant = 'default', onClick, showActions = f
         </div>
         <div className="text-right">
           <div className="font-medium text-safepal-dark-50">{formatNumber(value, { currency: true, compact: true })}</div>
-          <span className={cn('text-xs font-medium', isPositive ? 'text-safepal-green-400' : 'text-safepal-red-400')}>
+          <span className={cn('text-xs font-medium', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-400')}>
             {isPositive ? '+' : ''}{token.change24h.toFixed(2)}%
           </span>
         </div>
@@ -59,7 +59,7 @@ export function TokenCard({ token, variant = 'default', onClick, showActions = f
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold text-safepal-dark-50 truncate">{token.symbol}</h3>
                 {token.isVerified && (
-                  <svg className="w-4 h-4 text-safepal-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <svg className="w-4 h-4 text-safepal-dark-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 )}
@@ -71,7 +71,7 @@ export function TokenCard({ token, variant = 'default', onClick, showActions = f
           <div className="text-right flex-shrink-0">
             <div className="text-lg font-semibold text-safepal-dark-50">{formatNumber(value, { currency: true })}</div>
             <div className="text-sm text-safepal-dark-400">{formatNumber(token.balance, { decimals: 4 })} {token.symbol}</div>
-            <span className={cn('inline-block mt-1 text-xs font-medium px-2 py-0.5 rounded-full', isPositive ? 'bg-safepal-green-900 text-safepal-green-300' : 'bg-safepal-red-900 text-safepal-red-300')}>
+            <span className={cn('inline-block mt-1 text-xs font-medium px-2 py-0.5 rounded-full', isPositive ? 'bg-safepal-dark-900 text-safepal-dark-300' : 'bg-safepal-dark-900 text-safepal-dark-300')}>
               {isPositive ? '+' : ''}{token.change24h.toFixed(2)}%
             </span>
           </div>
@@ -98,7 +98,7 @@ export function TokenCard({ token, variant = 'default', onClick, showActions = f
             <div className="flex items-center gap-2">
               <h3 className="font-semibold text-safepal-dark-50">{token.symbol}</h3>
               {token.isVerified && (
-                <svg className="w-4 h-4 text-safepal-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <svg className="w-4 h-4 text-safepal-dark-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               )}
@@ -112,7 +112,7 @@ export function TokenCard({ token, variant = 'default', onClick, showActions = f
         </div>
       </div>
       <div className="mt-3 flex items-center justify-between">
-        <span className={cn('text-sm font-medium', isPositive ? 'text-safepal-green-400' : 'text-safepal-red-400')}>
+        <span className={cn('text-sm font-medium', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-400')}>
           {isPositive ? '+' : ''}{token.change24h.toFixed(2)}% (24h)
         </span>
         {showActions && (
@@ -180,19 +180,19 @@ export function PortfolioSummary({ totalValue, change24h, changeValue24h, classN
           <div className="text-3xl font-bold text-safepal-dark-50">${formatNumber(totalValue, { currency: true })}</div>
         </div>
         <div className="text-right">
-            <div className={cn('text-lg font-semibold', isPositive ? 'text-safepal-green-400' : 'text-safepal-red-400')}>
+            <div className={cn('text-lg font-semibold', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-400')}>
               {isPositive ? '+' : ''}{change24h.toFixed(2)}%
             </div>
-            <div className={cn('text-sm', isPositive ? 'text-safepal-green-400' : 'text-safepal-red-400')}>
+            <div className={cn('text-sm', isPositive ? 'text-safepal-dark-400' : 'text-safepal-dark-400')}>
               {isPositive ? '+' : ''}${formatNumber(Math.abs(changeValue24h), { currency: true })}
             </div>
         </div>
       </div>
-      <div className="mt-6 h-32 bg-gradient-to-r from-safepal-blue-500/10 to-safepal-blue-600/10 rounded-xl flex items-end justify-around p-4" role="img" aria-label="Portfolio value chart over 24 hours">
+      <div className="mt-6 h-32 bg-gradient-to-r from-safepal-dark-500/10 to-safepal-dark-600/10 rounded-xl flex items-end justify-around p-4" role="img" aria-label="Portfolio value chart over 24 hours">
         {[0.3, 0.45, 0.35, 0.6, 0.5, 0.7, 0.65, 0.8, 0.75, 0.9, 0.85, 1].map((height, i) => (
           <div
             key={i}
-            className="w-6 bg-gradient-to-t from-safepal-blue-500 to-safepal-blue-400 rounded-t transition-all duration-300"
+            className="w-6 bg-gradient-to-t from-safepal-dark-500 to-safepal-dark-400 rounded-t transition-all duration-300"
             style={{ height: `${height * 100}%` }}
           />
         ))}
@@ -246,7 +246,7 @@ export function QuickActions({ onSend, onReceive, onSwap, onBuy, className }: Qu
           role="listitem"
           aria-label={action.label}
         >
-          <div className="w-12 h-12 rounded-xl bg-safepal-blue-900 flex items-center justify-center text-safepal-blue-400">
+          <div className="w-12 h-12 rounded-xl bg-safepal-dark-900 flex items-center justify-center text-safepal-dark-400">
             {action.icon}
           </div>
           <span className="text-sm font-medium text-safepal-dark-50">{action.label}</span>

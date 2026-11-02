@@ -39,7 +39,7 @@ export function BottomNav({ items, activeItem, onChange, className }: BottomNavP
             {item.icon}
 {item.badge && (
                   <span
-                    className="absolute -top-1 -right-1 min-w-[18px] h-5 px-1.5 text-[10px] font-semibold text-white bg-safepal-green-9000 rounded-full flex items-center justify-center"
+                    className="absolute -top-1 -right-1 min-w-[18px] h-5 px-1.5 text-[10px] font-semibold text-white bg-safepal-dark-9000 rounded-full flex items-center justify-center"
                     aria-label={`${item.badge} notifications`}
                   >
                     {typeof item.badge === 'number' && item.badge > 99 ? '99+' : item.badge}

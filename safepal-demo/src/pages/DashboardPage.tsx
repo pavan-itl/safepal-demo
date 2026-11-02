@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { demoWallet, demoTokens, demoTransactions } from '../data/demoData';
+import { useDemoData } from '../context/DemoDataContext';
 import { Header } from '../components/Header';
 import { PortfolioSummary, QuickActions, TokenList } from '../components/TokenComponents';
 import { TransactionList } from '../components/TransactionComponents';
@@ -7,12 +7,11 @@ import { Card, CardContent } from '../components/ui';
 
 export function DashboardPage() {
   const [showBalance, setShowBalance] = useState(true);
-  const totalValue = demoWallet.totalValue;
-  const change24h = 3.45;
+  const { totalValue, change24h, tokens, transactions } = useDemoData();
   const changeValue24h = totalValue * (change24h / 100);
 
-  const topTokens = demoTokens.slice(0, 4);
-  const recentTransactions = demoTransactions.slice(0, 3);
+  const topTokens = tokens.slice(0, 4);
+  const recentTransactions = transactions.slice(0, 3);
 
   return (
     <div className="safe-page-full safe-area-bottom pb-32">
@@ -49,7 +48,7 @@ export function DashboardPage() {
         <div className="mt-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-safepal-dark-50">Your Assets</h2>
-            <button className="text-sm text-safepal-blue-400 font-medium">View All</button>
+            <button className="text-sm text-safepal-dark-400 font-medium">View All</button>
           </div>
           <TokenList
             tokens={topTokens}
@@ -62,7 +61,7 @@ export function DashboardPage() {
         <div className="mt-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-safepal-dark-50">Recent Activity</h2>
-            <button className="text-sm text-safepal-blue-400 font-medium">View All</button>
+            <button className="text-sm text-safepal-dark-400 font-medium">View All</button>
           </div>
           <TransactionList
             transactions={recentTransactions}
@@ -76,21 +75,21 @@ export function DashboardPage() {
             <h3 className="text-lg font-semibold text-safepal-dark-50">Quick Stats</h3>
           </div>
           <CardContent className="grid grid-cols-2 gap-4 p-4">
-            <div className="text-center p-4 rounded-xl bg-safepal-blue-900">
-              <div className="text-2xl font-bold text-safepal-blue-400">{demoTokens.length}</div>
-              <div className="text-sm text-safepal-blue-300">Tokens Held</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-dark-900">
+              <div className="text-2xl font-bold text-safepal-dark-400">{tokens.length}</div>
+              <div className="text-sm text-safepal-dark-300">Tokens Held</div>
             </div>
-            <div className="text-center p-4 rounded-xl bg-safepal-green-900">
-              <div className="text-2xl font-bold text-safepal-green-400">{demoTransactions.filter(t => t.status === 'confirmed').length}</div>
-              <div className="text-sm text-safepal-green-300">Completed Txns</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-dark-900">
+              <div className="text-2xl font-bold text-safepal-dark-400">{transactions.filter(t => t.status === 'confirmed').length}</div>
+              <div className="text-sm text-safepal-dark-300">Completed Txns</div>
             </div>
-            <div className="text-center p-4 rounded-xl bg-safepal-blue-900">
-              <div className="text-2xl font-bold text-safepal-blue-400">{demoWallet.networks.length}</div>
-              <div className="text-sm text-safepal-blue-300">Networks</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-dark-900">
+              <div className="text-2xl font-bold text-safepal-dark-400">5</div>
+              <div className="text-sm text-safepal-dark-300">Networks</div>
             </div>
-            <div className="text-center p-4 rounded-xl bg-safepal-green-900">
-              <div className="text-2xl font-bold text-safepal-green-400">$0.00</div>
-              <div className="text-sm text-safepal-green-300">24h Fees</div>
+            <div className="text-center p-4 rounded-xl bg-safepal-dark-900">
+              <div className="text-2xl font-bold text-safepal-dark-400">$0.00</div>
+              <div className="text-sm text-safepal-dark-300">24h Fees</div>
             </div>
           </CardContent>
         </Card>

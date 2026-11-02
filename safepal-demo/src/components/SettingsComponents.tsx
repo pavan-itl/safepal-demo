@@ -53,7 +53,7 @@ export function Toggle({ checked, onChange, disabled = false, className }: Toggl
       aria-checked={checked}
       className={cn(
         'relative w-11 h-6 rounded-full transition-colors duration-200',
-        checked ? 'bg-safepal-blue-600' : 'bg-safepal-dark-600',
+        checked ? 'bg-safepal-dark-600' : 'bg-safepal-dark-600',
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
@@ -99,7 +99,7 @@ export function Select({ label, options, error, className, id, ...props }: Selec
         ))}
       </select>
       {error && (
-        <p className="mt-1.5 text-sm text-safepal-red-400" role="alert">
+        <p className="mt-1.5 text-sm text-safepal-dark-400" role="alert">
           {error}
         </p>
       )}
@@ -163,13 +163,13 @@ export function WalletSelector({ wallets, onSelect, onAddWallet, className }: Wa
           onClick={() => onSelect(wallet.id)}
           className={cn(
             'w-full safe-card p-4 flex items-center justify-between',
-            wallet.isActive ? 'border-safepal-blue-300 bg-safepal-blue-900' : 'hover:safe-card-elevated'
+            wallet.isActive ? 'border-safepal-dark-300 bg-safepal-dark-900' : 'hover:safe-card-elevated'
           )}
         >
           <div className="flex items-center gap-3">
             <div className={cn(
               'w-10 h-10 rounded-xl flex items-center justify-center text-white font-medium flex-shrink-0',
-              wallet.isActive ? 'bg-safepal-blue-600' : 'bg-safepal-dark-600'
+              wallet.isActive ? 'bg-safepal-dark-600' : 'bg-safepal-dark-600'
             )}>
               {wallet.name.charAt(0).toUpperCase()}
             </div>
@@ -179,7 +179,7 @@ export function WalletSelector({ wallets, onSelect, onAddWallet, className }: Wa
             </div>
           </div>
           {wallet.isActive && (
-            <svg className="w-5 h-5 text-safepal-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <svg className="w-5 h-5 text-safepal-dark-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
           )}
