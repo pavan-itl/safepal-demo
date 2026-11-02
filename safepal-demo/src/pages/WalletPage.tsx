@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDemoData } from '../context/DemoDataContext';
 import { cn, formatNumber } from '../utils/helpers';
-import { Input } from '../components/ui';
+import { Input, Button } from '../components/ui';
 import {
   Hexagon,
   Bell,
@@ -16,13 +16,20 @@ import {
   Fuel,
   MoreVertical,
   Search,
+  X,
 } from 'lucide-react';
 
-export function WalletPage() {
-  const { tokens, totalValue } = useDemoData();
+interface WalletPageProps {
+  editable?: boolean;
+}
+
+export function WalletPage({ editable = true }: WalletPageProps) {
+  const { tokens, totalValue, updateToken, setCashBalance } = useDemoData();
   const [searchQuery, setSearchQuery] = useState('');
   const [showBalance, setShowBalance] = useState(true);
   const [activeTab, setActiveTab] = useState<'coin' | 'earn' | 'nft'>('coin');
+  const [editing, setEditing] = useState<{ label: string; value: number; onSave: (v: number) => void } | null>(null);
+  const [editValue, setEditValue] = useState('');
 
   const filteredTokens = tokens.filter((token) =>
     token.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -30,6 +37,19 @@ export function WalletPage() {
   );
 
   const btcToken = tokens.find((t) => t.symbol === 'BTC');
+
+  const openEditor = (label: string, value: number, onSave: (v: number) => void) => {
+    if (!editable) return;
+    setEditing({ label, value, onSave });
+    setEditValue(String(value));
+  };
+
+  const saveEdit = () => {
+    const n = Number(editValue);
+    if (!Number.isFinite(n) || n < 0) return;
+    editing?.onSave(n);
+    setEditing(null);
+  };
 
   return (
     <div className="safe-page-full safe-area-bottom pb-24">
@@ -81,12 +101,23 @@ export function WalletPage() {
               {showBalance ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
             </button>
           </div>
-          <div className="text-4xl font-bold text-safepal-dark-50">
+          <div
+            className={cn('text-4xl font-bold text-safepal-dark-50', editable && 'cursor-pointer hover:underline')}
+            onClick={() => openEditor('Total Portfolio Value', totalValue, (v) => {
+              const tokenValue = tokens.reduce((s, t) => s + t.balance * t.price, 0);
+              setCashBalance(v - tokenValue);
+            })}
+          >
             {showBalance ? formatNumber(totalValue, { currency: true }) : '••••'}
           </div>
-          <div className="text-safepal-dark-400 text-sm mt-1">
+          <button
+            type="button"
+            disabled={!editable}
+            onClick={() => btcToken && openEditor('BTC Balance', btcToken.balance, (v) => updateToken(btcToken.id, { balance: v, value: v * btcToken.price }))}
+            className={cn('text-safepal-dark-400 text-sm mt-1', editable && 'cursor-pointer hover:underline')}
+          >
             {showBalance ? `${formatNumber(btcToken?.balance || 0, { decimals: 4 })} BTC` : ''}
-          </div>
+          </button>
         </div>
 
         <div className="grid grid-cols-5 gap-2 sm:gap-3 mb-4" role="list">
@@ -144,21 +175,69 @@ export function WalletPage() {
                   <div className="min-w-0">
                     <div className="font-medium text-safepal-dark-50">{token.symbol}</div>
                     <div className="text-xs text-safepal-dark-400">{token.network}</div>
-                    <div className="text-xs text-safepal-dark-400">${token.price.toFixed(2)}</div>
+                    <button
+                      type="button"
+                      disabled={!editable}
+                      onClick={() => openEditor(`${token.symbol} Price`, token.price, (v) => updateToken(token.id, { price: v, value: token.balance * v }))}
+                      className={cn('text-xs text-safepal-dark-400', editable && 'cursor-pointer hover:underline')}
+                    >
+                      ${token.price.toFixed(2)}
+                    </button>
                     <div className={cn('text-xs', isPositive ? 'text-green-500' : 'text-red-500')}>
                       {isPositive ? '+' : ''}{token.change24h.toFixed(2)}%
                     </div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-medium text-safepal-dark-50">{formatNumber(token.balance, { decimals: 4 })}</div>
-                  <div className="text-xs text-safepal-dark-400">{formatNumber(token.value, { currency: true })}</div>
+                  <button
+                    type="button"
+                    disabled={!editable}
+                    onClick={() => openEditor(`${token.symbol} Quantity`, token.balance, (v) => updateToken(token.id, { balance: v, value: v * token.price }))}
+                    className={cn('font-medium text-safepal-dark-50', editable && 'cursor-pointer hover:underline')}
+                  >
+                    {formatNumber(token.balance, { decimals: 4 })}
+                  </button>
+                  <button
+                    type="button"
+                    disabled={!editable}
+                    onClick={() => openEditor(`${token.symbol} Value`, token.value, (v) => {
+                      const price = token.price || 1;
+                      updateToken(token.id, { value: v, balance: v / price });
+                    })}
+                    className={cn('text-xs text-safepal-dark-400 block', editable && 'cursor-pointer hover:underline')}
+                  >
+                    {formatNumber(token.value, { currency: true })}
+                  </button>
                 </div>
               </div>
             );
           })}
         </div>
       </div>
+
+      {editing && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setEditing(null)} />
+          <div className="relative w-full max-w-sm bg-safepal-dark-800 rounded-2xl p-4 border border-safepal-dark-700">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-semibold text-safepal-dark-50">Edit {editing.label}</h3>
+              <button onClick={() => setEditing(null)} className="p-2 rounded-xl text-safepal-dark-400 hover:bg-safepal-dark-700">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <Input
+              label="Amount"
+              type="number"
+              value={editValue}
+              onChange={(e: any) => setEditValue(e.target.value)}
+            />
+            <div className="flex gap-2 mt-4">
+              <Button variant="primary" size="sm" onClick={saveEdit}>Save</Button>
+              <Button variant="ghost" size="sm" onClick={() => setEditing(null)}>Cancel</Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

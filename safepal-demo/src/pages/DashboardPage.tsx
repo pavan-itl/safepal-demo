@@ -1,5 +1,5 @@
 import { WalletPage } from './WalletPage';
 
 export function DashboardPage() {
-  return <WalletPage />;
+  return <WalletPage editable={false} />;
 }
