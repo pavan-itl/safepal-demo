@@ -2029,6 +2029,13 @@ const TOKEN_ICONS = {
       </svg>
     </div>
   ),
+  USDT: (
+    <div className="token-icon" style={{ background: "#26a17b" }}>
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="#ffffff">
+        <path d="M17.9 14.2v-3.1h7.2V6H6.9v5.1h7.2v3.1c-5.8.3-10.1 1.4-10.1 2.8v2.2c0 1.5 5 2.7 11.9 2.7s11.9-1.2 11.9-2.7V17c.2-1.4-4.1-2.5-9.9-2.8zm-1.8 6c-6.1 0-9.5-.9-9.5-1.7 0-.7 2.8-1.4 7.5-1.6v3.3c.6 0 1.3.1 2 .1s1.4 0 2-.1v-3.3c4.7.2 7.5.9 7.5 1.6 0 .8-3.4 1.7-9.5 1.7z" />
+      </svg>
+    </div>
+  ),
 };
 
 const INITIAL_PORTFOLIO = [
@@ -2696,6 +2703,10 @@ export default function CryptoWalletApp() {
           gap: 4px;
         }
 
+        .featured-token-change {
+          color: #d9534f;
+        }
+
         .holding-amount {
           font-size: 15px;
           font-weight: 600;
@@ -2992,6 +3003,25 @@ export default function CryptoWalletApp() {
 
             {/* Dynamic Token List */}
             <main className="token-list">
+              <div className="token-card">
+                <div className="token-left">
+                  {TOKEN_ICONS.USDT}
+                  <div className="token-info">
+                    <div className="token-title-row">
+                      <span className="token-symbol">USDT</span>
+                      <span className="token-network">(Solana)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="token-right">
+                  <span className="holding-amount">
+                    {isBalanceHidden ? "****" : "$5,000"}
+                  </span>
+                  <span className="holding-fiat featured-token-change">
+                    {isBalanceHidden ? "****" : "- 2,000"}
+                  </span>
+                </div>
+              </div>
               {filteredTokens.map((token, idx) => {
                 const isNeg = token.change24h < 0;
                 const formattedChange = `${isNeg ? "" : "+"}${token.change24h.toFixed(2)}%`;
