@@ -84,6 +84,7 @@
 
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import swapIcon from "../assets/swap.png";
 
 const TOKEN_ICONS = {
   BNB: (
@@ -1352,12 +1353,7 @@ export default function CryptoWalletApp() {
   className={`nav-btn ${activeBottomNav === "Swap" ? "active" : ""}`}
   onClick={() => setActiveBottomNav("Swap")}
 >
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M7 17L17 7" />
-    <path d="M7 7h10v10" />
-    <line x1="7" y1="7" x2="7" y2="13" />
-    <line x1="17" y1="17" x2="11" y2="17" />
-  </svg>
+  <img src={swapIcon} alt="" aria-hidden="true" width="20" height="20" />
   <span>Swap</span>
 </button>
             <button
