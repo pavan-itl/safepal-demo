@@ -85,71 +85,36 @@
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import swapIcon from "../assets/swap.png";
+import bnbTokenIcon from "../assets/token-icons/bnb.png";
+import bitcoinTokenIcon from "../assets/token-icons/bitcoin.png";
+import ethereumTokenIcon from "../assets/token-icons/ethereum.png";
+import gramTokenIcon from "../assets/token-icons/gram.png";
+import mag7TokenIcon from "../assets/token-icons/mag7-ssi.png";
+import polTokenIcon from "../assets/token-icons/pol.png";
+import sfpTokenIcon from "../assets/token-icons/sfp.png";
+import solanaTokenIcon from "../assets/token-icons/solana.png";
+import tronTokenIcon from "../assets/token-icons/tron.png";
+import usdcTokenIcon from "../assets/token-icons/usdc.png";
+import usdtTokenIcon from "../assets/token-icons/usdt.png";
+
+const tokenIcon = (src) => (
+  <img className="token-icon token-logo" src={src} alt="" aria-hidden="true" />
+);
 
 const TOKEN_ICONS = {
-  BNB: (
-    <div className="token-icon" style={{ background: "#f3ba2f" }}>
-      <svg width="22" height="22" viewBox="0 0 32 32" fill="#fff">
-        <path d="M16 6l3.09 3.09-5.18 5.18-3.09-3.09L16 6zm6.18 6.18L25.27 15.27 16 24.55l-9.27-9.28 3.09-3.09L16 18.36l6.18-6.18zM6 16l3.09-3.09L12.18 16l-3.09 3.09L6 16zm13.82 0l3.09-3.09L26 16l-3.09 3.09L19.82 16z" />
-      </svg>
-    </div>
-  ),
-  BTC: (
-    <div className="token-icon" style={{ background: "#f7931a" }}>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
-        <path d="M16.5 11.2c.6-.8.9-1.9.6-3.1-.4-1.6-1.9-2.4-3.8-2.6V3h-1.6v2.4h-1.3V3H8.8v2.4H6v1.8h1.2c.6 0 .8.3.8.7v7.9c0 .4-.2.7-.7.7H6v1.9h2.8V21h1.6v-2.4h1.3V21h1.6v-2.4c2.6-.2 4.4-1.3 4.7-3.6.2-1.8-.6-3-2.5-3.8zM10.5 7.4h1.9c1.2 0 2.1.5 2.1 1.6 0 1.1-.9 1.6-2.1 1.6h-1.9V7.4zm2.3 9.2h-2.3v-3.5h2.3c1.4 0 2.4.5 2.4 1.7 0 1.3-1 1.8-2.4 1.8z" />
-      </svg>
-    </div>
-  ),
-  ETH_ERC20: (
-    <div className="token-icon" style={{ background: "#ffffff" }}>
-      <svg width="22" height="22" viewBox="0 0 32 32">
-        <polygon fill="#343434" points="16,4 15.8,4.6 15.8,20.3 16,20.5 23.2,16.2" />
-        <polygon fill="#8C8C8C" points="16,4 8.8,16.2 16,20.5 16,12.8" />
-        <polygon fill="#3C3C3B" points="16,21.9 15.9,22 15.9,27.6 16,28 23.2,17.6" />
-        <polygon fill="#8C8C8C" points="16,28 16,21.9 8.8,17.6" />
-      </svg>
-    </div>
-  ),
-  ETH_ARB: (
-    <div className="token-icon" style={{ background: "#213147" }}>
-      <svg width="24" height="24" viewBox="0 0 32 32">
-        <path
-          fill="#28A0F0"
-          d="M16 4L6 9.8v12.4L16 28l10-5.8V9.8L16 4zm6.5 16.5l-2.8 1.6-4.4-7.6-2.3 4.1 2.7 4.6-2.6 1.5-4.3-7.4L15.3 7l7.2 13.5z"
-        />
-        <path fill="#ffffff" d="M15.3 7L8.8 18.3l2.6 1.5 3.9-6.8 4.4 7.6 2.8-1.6z" />
-      </svg>
-    </div>
-  ),
-  ETH_BASE: (
-    <div className="token-icon" style={{ background: "#0052ff" }}>
-      <svg width="24" height="24" viewBox="0 0 32 32">
-        <circle cx="16" cy="16" r="11" fill="#ffffff" />
-        <rect x="6" y="14.5" width="12" height="3" fill="#0052ff" />
-      </svg>
-    </div>
-  ),
-  SOL: (
-    <div className="token-icon" style={{ background: "linear-gradient(135deg, #00FFA3 0%, #DC1FFF 100%)" }}>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#131418">
-        <path d="M5.5 15.5h11.8l1.7 2H7.2l-1.7-2zm0-4.5h13.5l-1.7 2H3.8l1.7-2zm1.7-4.5h11.8l-1.7 2H5.5l1.7-2z" />
-      </svg>
-    </div>
-  ),
-  USDT: (
-    <div className="token-icon" style={{ background: "#26a17b" }}>
-      <svg width="22" height="22" viewBox="0 0 32 32" fill="#ffffff">
-        <path d="M17.9 14.2v-3.1h7.2V6H6.9v5.1h7.2v3.1c-5.8.3-10.1 1.4-10.1 2.8v2.2c0 1.5 5 2.7 11.9 2.7s11.9-1.2 11.9-2.7V17c.2-1.4-4.1-2.5-9.9-2.8zm-1.8 6c-6.1 0-9.5-.9-9.5-1.7 0-.7 2.8-1.4 7.5-1.6v3.3c.6 0 1.3.1 2 .1s1.4 0 2-.1v-3.3c4.7.2 7.5.9 7.5 1.6 0 .8-3.4 1.7-9.5 1.7z" />
-      </svg>
-    </div>
-  ),
-  GRAM: <div className="token-icon" style={{ background: "#0098ea", color: "#fff", fontWeight: 700 }}>G</div>,
-  MAG7: <div className="token-icon" style={{ background: "#242832", color: "#fff", fontSize: 10, fontWeight: 700 }}>M7</div>,
-  POL: <div className="token-icon" style={{ background: "#8247e5", color: "#fff", fontWeight: 700 }}>P</div>,
-  SFP: <div className="token-icon" style={{ background: "#4c6fff", color: "#fff", fontWeight: 700 }}>S</div>,
-  TRX: <div className="token-icon" style={{ background: "#ef0027", color: "#fff", fontWeight: 700 }}>T</div>,
-  USDC: <div className="token-icon" style={{ background: "#2775ca", color: "#fff", fontWeight: 700 }}>$</div>,
+  BNB: tokenIcon(bnbTokenIcon),
+  BTC: tokenIcon(bitcoinTokenIcon),
+  ETH_ERC20: tokenIcon(ethereumTokenIcon),
+  ETH_ARB: tokenIcon(ethereumTokenIcon),
+  ETH_BASE: tokenIcon(ethereumTokenIcon),
+  SOL: tokenIcon(solanaTokenIcon),
+  USDT: tokenIcon(usdtTokenIcon),
+  GRAM: tokenIcon(gramTokenIcon),
+  MAG7: tokenIcon(mag7TokenIcon),
+  POL: tokenIcon(polTokenIcon),
+  SFP: tokenIcon(sfpTokenIcon),
+  TRX: tokenIcon(tronTokenIcon),
+  USDC: tokenIcon(usdcTokenIcon),
 };
 
 const INITIAL_PORTFOLIO = [
@@ -829,6 +794,10 @@ export default function CryptoWalletApp() {
           justify-content: center;
           flex-shrink: 0;
           overflow: hidden;
+        }
+
+        .token-logo {
+          object-fit: contain;
         }
 
         .token-info {
