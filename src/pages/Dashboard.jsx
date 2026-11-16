@@ -143,18 +143,36 @@ const TOKEN_ICONS = {
       </svg>
     </div>
   ),
+  GRAM: <div className="token-icon" style={{ background: "#0098ea", color: "#fff", fontWeight: 700 }}>G</div>,
+  MAG7: <div className="token-icon" style={{ background: "#242832", color: "#fff", fontSize: 10, fontWeight: 700 }}>M7</div>,
+  POL: <div className="token-icon" style={{ background: "#8247e5", color: "#fff", fontWeight: 700 }}>P</div>,
+  SFP: <div className="token-icon" style={{ background: "#4c6fff", color: "#fff", fontWeight: 700 }}>S</div>,
+  TRX: <div className="token-icon" style={{ background: "#ef0027", color: "#fff", fontWeight: 700 }}>T</div>,
+  USDC: <div className="token-icon" style={{ background: "#2775ca", color: "#fff", fontWeight: 700 }}>$</div>,
 };
 
 const INITIAL_PORTFOLIO = [
-  { binanceSymbol: "BNBUSDT", cgId: "binancecoin", symbol: "BNB", network: "(BEP20)", networkFilter: "BEP20", iconKey: "BNB", balance: 0, fallbackPrice: 675.07, fallbackChange: -0.73 },
-  { binanceSymbol: "BTCUSDT", cgId: "bitcoin", symbol: "BTC", network: "(Bitcoin)", networkFilter: "Bitcoin", iconKey: "BTC", balance: 0, fallbackPrice: 73633.12, fallbackChange: -0.28 },
-  { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(ERC20)", networkFilter: "ERC20", iconKey: "ETH_ERC20", balance: 0, fallbackPrice: 2049.51, fallbackChange: -0.78 },
-  { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(Arbitrum)", networkFilter: "Arbitrum", iconKey: "ETH_ARB", balance: 0, fallbackPrice: 2049.51, fallbackChange: -0.78 },
-  { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(Base)", networkFilter: "Base", iconKey: "ETH_BASE", balance: 0, fallbackPrice: 2049.51, fallbackChange: -0.78 },
-  { binanceSymbol: "SOLUSDT", cgId: "solana", symbol: "SOL", network: "(Solana)", networkFilter: "Solana", iconKey: "SOL", balance: 0, fallbackPrice: 185.40, fallbackChange: 1.45 },
+  { cgId: "tether", symbol: "USDT", network: "(Solana)", networkFilter: "Solana", iconKey: "USDT", balance: 500, fallbackPrice: 0.9993, fallbackChange: 0 },
+  { binanceSymbol: "BNBUSDT", cgId: "binancecoin", symbol: "BNB", network: "(BEP20)", networkFilter: "BEP20", iconKey: "BNB", balance: 0, fallbackPrice: 615.27, fallbackChange: -4.11 },
+  { binanceSymbol: "BTCUSDT", cgId: "bitcoin", symbol: "BTC", network: "(Bitcoin)", networkFilter: "Bitcoin", iconKey: "BTC", balance: 0, fallbackPrice: 67158.01, fallbackChange: -3.09 },
+  { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(ERC20)", networkFilter: "ERC20", iconKey: "ETH_ERC20", balance: 0, fallbackPrice: 1903.45, fallbackChange: -2.99 },
+  { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(Arbitrum)", networkFilter: "Arbitrum", iconKey: "ETH_ARB", balance: 0, fallbackPrice: 1903.45, fallbackChange: -2.99 },
+  { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(Base)", networkFilter: "Base", iconKey: "ETH_BASE", balance: 0, fallbackPrice: 1903.45, fallbackChange: -2.99 },
+  { cgId: "gram", symbol: "GRAM", network: "(TON)", networkFilter: "TON", iconKey: "GRAM", balance: 0, fallbackPrice: 1.1, fallbackChange: -4.84 },
+  { cgId: "mag7-ssi", symbol: "MAG7.ssi", network: "(Base)", networkFilter: "Base", iconKey: "MAG7", balance: 0, fallbackPrice: 0.4353, fallbackChange: -2.47 },
+  { cgId: "polygon-ecosystem-token", symbol: "POL", network: "(Polygon)", networkFilter: "Polygon", iconKey: "POL", balance: 0, fallbackPrice: 0.0837, fallbackChange: -3.81 },
+  { binanceSymbol: "SFPUSDT", cgId: "safepal", symbol: "SFP", network: "(BEP20)", networkFilter: "BEP20", iconKey: "SFP", balance: 0, fallbackPrice: 0.1813, fallbackChange: -6.88 },
+  { binanceSymbol: "SOLUSDT", cgId: "solana", symbol: "SOL", network: "(Solana)", networkFilter: "Solana", iconKey: "SOL", balance: 0, fallbackPrice: 75.71, fallbackChange: -6.3 },
+  { binanceSymbol: "TRXUSDT", cgId: "tron", symbol: "TRX", network: "", networkFilter: "TRON", iconKey: "TRX", balance: 0, fallbackPrice: 0.313, fallbackChange: 0.1 },
+  { cgId: "usd-coin", symbol: "USDC", network: "(Arbitrum)", networkFilter: "Arbitrum", iconKey: "USDC", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
+  { cgId: "usd-coin", symbol: "USDC", network: "(ERC20)", networkFilter: "ERC20", iconKey: "USDC", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
+  { cgId: "usd-coin", symbol: "USDC", network: "(Base)", networkFilter: "Base", iconKey: "USDC", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
+  { cgId: "tether", symbol: "USDT", network: "(TRC20)", networkFilter: "TRC20", iconKey: "USDT", balance: 0, fallbackPrice: 0.9993, fallbackChange: 0 },
+  { cgId: "tether", symbol: "USDT", network: "(ERC20)", networkFilter: "ERC20", iconKey: "USDT", balance: 0, fallbackPrice: 0.9993, fallbackChange: 0 },
 ];
 
-const NETWORK_OPTIONS = ["All", "BEP20", "Bitcoin", "ERC20", "Arbitrum", "Base", "Solana"];
+const COINGECKO_IDS = [...new Set(INITIAL_PORTFOLIO.map((token) => token.cgId))].join(",");
+const NETWORK_OPTIONS = ["All", "BEP20", "Bitcoin", "ERC20", "Arbitrum", "Base", "TON", "Polygon", "TRON", "TRC20", "Solana"];
 const PULL_THRESHOLD = 65;
 
 // Helper: Fetch with 4-second timeout so blocked domains never hang
@@ -186,6 +204,7 @@ export default function CryptoWalletApp() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedNetwork, setSelectedNetwork] = useState("All");
   const [showToast, setShowToast] = useState(false);
+  const [isRefreshingUsdtSolana, setIsRefreshingUsdtSolana] = useState(false);
 
   // Pull-to-refresh states
   const [refreshStatus, setRefreshStatus] = useState("idle");
@@ -230,13 +249,25 @@ export default function CryptoWalletApp() {
     }
   }, []);
 
-  // 2. Binance 24hr Ticker (including SOLUSDT) + Automatic CoinGecko Backup
+  // 2. Binance tickers with CoinGecko prices for the full portfolio
   const fetchBinanceTickers = useCallback(async () => {
     const symbolsList = ["BNBUSDT", "BTCUSDT", "ETHUSDT", "SOLUSDT"];
     const baseDomains = [
       "https://data-api.binance.vision",
       "https://api.binance.com",
     ];
+    const setPortfolioPrices = (getPrice) => {
+      setTokens((currentTokens) =>
+        INITIAL_PORTFOLIO.map((item) => {
+          const currentToken = currentTokens.find(
+            (token) => token.symbol === item.symbol && token.networkFilter === item.networkFilter
+          );
+          const balance = currentToken?.balance ?? item.balance;
+          const { price, change24h } = getPrice(item);
+          return { ...item, balance, price, change24h, fiatValue: balance * price };
+        })
+      );
+    };
 
     // Try Binance endpoints (unblocked vision mirror first)
     for (const domain of baseDomains) {
@@ -255,19 +286,23 @@ export default function CryptoWalletApp() {
           };
         });
 
-        setTokens(
-          INITIAL_PORTFOLIO.map((item) => {
-            const live = priceMap[item.binanceSymbol];
-            const price = live ? live.price : item.fallbackPrice;
-            const change24h = live ? live.change24h : item.fallbackChange;
-            return {
-              ...item,
-              price,
-              change24h,
-              fiatValue: item.balance * price,
-            };
-          })
-        );
+        let coinGeckoData = {};
+        try {
+          coinGeckoData = await fetchWithTimeout(
+            `https://api.coingecko.com/api/v3/simple/price?ids=${COINGECKO_IDS}&vs_currencies=usd&include_24hr_change=true`,
+            5000
+          );
+        } catch {
+          // Binance prices and local fallbacks remain available if CoinGecko is blocked.
+        }
+
+        setPortfolioPrices((item) => {
+            const binancePrice = priceMap[item.binanceSymbol];
+            const coinGeckoPrice = coinGeckoData[item.cgId];
+            const price = binancePrice?.price ?? coinGeckoPrice?.usd ?? item.fallbackPrice;
+            const change24h = binancePrice?.change24h ?? coinGeckoPrice?.usd_24h_change ?? item.fallbackChange;
+            return { price, change24h };
+        });
         return; // Success! Exit function
       } catch (_) {
         // Try next domain
@@ -277,34 +312,64 @@ export default function CryptoWalletApp() {
     // Backup: CoinGecko if ISP blocks all Binance domains
     try {
       const cgData = await fetchWithTimeout(
-        "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin,bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true",
+        `https://api.coingecko.com/api/v3/simple/price?ids=${COINGECKO_IDS}&vs_currencies=usd&include_24hr_change=true`,
         5000
       );
-      setTokens(
-        INITIAL_PORTFOLIO.map((item) => {
+      setPortfolioPrices((item) => {
           const live = cgData[item.cgId];
           const price = live ? live.usd : item.fallbackPrice;
           const change24h = live ? live.usd_24h_change : item.fallbackChange;
-          return {
-            ...item,
-            price,
-            change24h,
-            fiatValue: item.balance * price,
-          };
-        })
-      );
+          return { price, change24h };
+      });
     } catch (_) {
       // Final offline fallback
-      setTokens(
-        INITIAL_PORTFOLIO.map((item) => ({
-          ...item,
-          price: item.fallbackPrice,
-          change24h: item.fallbackChange,
-          fiatValue: item.balance * item.fallbackPrice,
-        }))
-      );
+      setPortfolioPrices((item) => ({ price: item.fallbackPrice, change24h: item.fallbackChange }));
     }
   }, []);
+
+  const updateUsdtSolanaBalance = (value) => {
+    const balance = value === "" ? 0 : Number(value);
+    if (!Number.isFinite(balance) || balance < 0) return;
+
+    setTokens((currentTokens) =>
+      currentTokens.map((token) =>
+        token.symbol === "USDT" && token.networkFilter === "Solana"
+          ? { ...token, balance, fiatValue: balance * token.price }
+          : token
+      )
+    );
+  };
+
+  const refreshUsdtSolanaPrice = async () => {
+    setIsRefreshingUsdtSolana(true);
+    try {
+      const data = await fetchWithTimeout(
+        "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd&include_24hr_change=true",
+        5000
+      );
+      const livePrice = data.tether;
+      if (!Number.isFinite(livePrice?.usd)) throw new Error("USDT price unavailable");
+
+      setTokens((currentTokens) =>
+        currentTokens.map((token) =>
+          token.symbol === "USDT" && token.networkFilter === "Solana"
+            ? {
+                ...token,
+                price: livePrice.usd,
+                change24h: Number.isFinite(livePrice.usd_24h_change)
+                  ? livePrice.usd_24h_change
+                  : token.change24h,
+                fiatValue: token.balance * livePrice.usd,
+              }
+            : token
+        )
+      );
+    } catch {
+      // Keep the last known price when the refresh request fails.
+    } finally {
+      setIsRefreshingUsdtSolana(false);
+    }
+  };
 
   useEffect(() => {
     fetchBinanceExchangeInfo();
@@ -448,15 +513,33 @@ export default function CryptoWalletApp() {
           gap: 16px;
         }
 
-        .icon-btn {
-          background: none;
+       .icon-btn {
+          position: relative;
+          background: transparent;
           border: none;
-          color: #d1d5db;
           cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 6px;
+          color: #ffffff; /* Bell icon ka color */
+        }
+
+        .notification-badge {
+          position: absolute;
+          top: 1px;
+          right: 1px;
+          background-color: #ef4444; /* Red circle */
+          color: #ffffff; /* White text */
+          font-size: 10px;
+          font-weight: 700;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 2px;
+          line-height: 1;
         }
 
         .wallet-selector {
@@ -771,13 +854,7 @@ export default function CryptoWalletApp() {
           font-size: 14px;
         }
 
-        .status-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background-color: #2ebd85;
-          display: inline-block;
-        }
+
 
         .token-price-row {
           display: flex;
@@ -789,6 +866,24 @@ export default function CryptoWalletApp() {
         .token-price {
           color: #d1d5db;
           font-weight: 400;
+        }
+
+        .token-price-refresh {
+          background: none;
+          border: 0;
+          padding: 0;
+          color: inherit;
+          font: inherit;
+          cursor: pointer;
+        }
+
+        .token-price-refresh:hover:not(:disabled) {
+          text-decoration: underline;
+        }
+
+        .token-price-refresh:disabled {
+          cursor: wait;
+          opacity: 0.7;
         }
 
         .price-change {
@@ -818,6 +913,16 @@ export default function CryptoWalletApp() {
           font-size: 15px;
           font-weight: 600;
           color: #f3f4f6;
+        }
+
+        .holding-amount-input {
+          width: 82px;
+          padding: 0;
+          border: 0;
+          outline: 0;
+          background: transparent;
+          text-align: right;
+          font-family: inherit;
         }
 
         .holding-fiat {
@@ -895,12 +1000,20 @@ export default function CryptoWalletApp() {
                 </svg>
               </button>
 
-              <button className="icon-btn" title="Notifications">
+              {/* <button className="icon-btn" title="Notifications">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                   <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
                   <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                 </svg>
-              </button>
+              </button> */}
+
+              <button className="icon-btn" title="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </svg>
+        <span className="notification-badge">17</span>
+      </button>
 
               <div className="wallet-selector">
                 <span className="wallet-name">{walletInfo.name}</span>
@@ -1110,25 +1223,6 @@ export default function CryptoWalletApp() {
 
             {/* Dynamic Token List */}
             <main className="token-list">
-              <div className="token-card">
-                <div className="token-left">
-                  {TOKEN_ICONS.USDT}
-                  <div className="token-info">
-                    <div className="token-title-row">
-                      <span className="token-symbol">USDT</span>
-                      <span className="token-network">(Solana)</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="token-right">
-                  <span className="holding-amount">
-                    {isBalanceHidden ? "****" : "$5,000"}
-                  </span>
-                  <span className="holding-fiat featured-token-change">
-                    {isBalanceHidden ? "****" : "- 2,000"}
-                  </span>
-                </div>
-              </div>
               {filteredTokens.map((token, idx) => {
                 const isNeg = token.change24h < 0;
                 const formattedChange = `${isNeg ? "" : "+"}${token.change24h.toFixed(2)}%`;
@@ -1145,7 +1239,21 @@ export default function CryptoWalletApp() {
                           {isTrading && <span className="status-dot" title="TRADING on Binance" />}
                         </div>
                         <div className="token-price-row">
-                          <span className="token-price">{formatUSD(token.price)}</span>
+                          {token.symbol === "USDT" && token.networkFilter === "Solana" ? (
+                            <button
+                              className="token-price token-price-refresh"
+                              type="button"
+                              onClick={refreshUsdtSolanaPrice}
+                              disabled={isRefreshingUsdtSolana}
+                              aria-label="Refresh USDT Solana price"
+                              aria-busy={isRefreshingUsdtSolana}
+                              title="Click to refresh price"
+                            >
+                              {formatUSD(token.price)}
+                            </button>
+                          ) : (
+                            <span className="token-price">{formatUSD(token.price)}</span>
+                          )}
                           <span className={`price-change ${isNeg ? "negative" : "positive"}`}>
                             {formattedChange}
                           </span>
@@ -1154,9 +1262,25 @@ export default function CryptoWalletApp() {
                     </div>
 
                     <div className="token-right">
-                      <span className="holding-amount">
-                        {isBalanceHidden ? "****" : token.balance}
-                      </span>
+                      {token.symbol === "USDT" && token.networkFilter === "Solana" ? (
+                        isBalanceHidden ? (
+                          <span className="holding-amount">****</span>
+                        ) : (
+                          <input
+                            className="holding-amount holding-amount-input"
+                            type="number"
+                            min="0"
+                            step="any"
+                            value={token.balance}
+                            onChange={(event) => updateUsdtSolanaBalance(event.target.value)}
+                            aria-label="USDT Solana balance"
+                          />
+                        )
+                      ) : (
+                        <span className="holding-amount">
+                          {isBalanceHidden ? "****" : token.balance}
+                        </span>
+                      )}
                       <span className="holding-fiat">
                         {isBalanceHidden
                           ? "****"
@@ -1208,7 +1332,7 @@ export default function CryptoWalletApp() {
               <span>Explore</span>
             </button>
 
-            <button
+            {/* <button
               className={`nav-btn ${activeBottomNav === "Swap" ? "active" : ""}`}
               onClick={() => setActiveBottomNav("Swap")}
             >
@@ -1219,8 +1343,23 @@ export default function CryptoWalletApp() {
                 <path d="M21 13v2a4 4 0 0 1-4 4H3" />
               </svg>
               <span>Swap</span>
-            </button>
+            </button> */}
 
+
+
+
+           <button
+  className={`nav-btn ${activeBottomNav === "Swap" ? "active" : ""}`}
+  onClick={() => setActiveBottomNav("Swap")}
+>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 17L17 7" />
+    <path d="M7 7h10v10" />
+    <line x1="7" y1="7" x2="7" y2="13" />
+    <line x1="17" y1="17" x2="11" y2="17" />
+  </svg>
+  <span>Swap</span>
+</button>
             <button
               className={`nav-btn ${activeBottomNav === "Trade" ? "active" : ""}`}
               onClick={() => setActiveBottomNav("Trade")}
