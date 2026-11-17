@@ -85,22 +85,22 @@
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import swapIcon from "../assets/swap.png";
-import bnbTokenIcon from "../assets/bnb.jpeg";
-import bitcoinTokenIcon from "../assets/btc.jpeg";
-import ethereumErc20TokenIcon from "../assets/eth erc20.jpeg";
-import ethereumArbitrumTokenIcon from "../assets/eth arbitrum.jpeg";
-import ethereumBaseTokenIcon from "../assets/eth base.jpeg";
+import bnbTokenIcon from "../assets/bnb.png";
+import bitcoinTokenIcon from "../assets/btc.png";
+import ethereumErc20TokenIcon from "../assets/eth_erc20.png";
+import ethereumArbitrumTokenIcon from "../assets/eth_arbitrum.png";
+import ethereumBaseTokenIcon from "../assets/eth_base.png";
 import gramTokenIcon from "../assets/gram.png";
-import mag7TokenIcon from "../assets/mag7.ssi.jpeg";
-import polTokenIcon from "../assets/polygon.jpeg";
-import sfpTokenIcon from "../assets/sfpl.jpeg";
-import solanaTokenIcon from "../assets/sol solana.jpeg";
-import tronTokenIcon from "../assets/trx.jpeg";
-import usdcTokenIcon from "../assets/usdc.jpeg";
-import usdtTokenIcon from "../assets/usdt.jpeg";
+import mag7TokenIcon from "../assets/mag7.ssi.png";
+import polTokenIcon from "../assets/polygon.png";
+import sfpTokenIcon from "../assets/sfpl.png";
+import solanaTokenIcon from "../assets/sol_solana.png";
+import tronTokenIcon from "../assets/token-icons/tron.png";
+import usdcTokenIcon from "../assets/usdc.png";
+import usdtTokenIcon from "../assets/usdt.png";
 
-const tokenIcon = (src) => (
-  <img className="token-icon token-logo" src={src} alt="" aria-hidden="true" />
+const tokenIcon = (src, className = "") => (
+  <img className={`token-icon token-logo ${className}`} src={src} alt="" aria-hidden="true" />
 );
 
 const TOKEN_ICONS = {
@@ -111,7 +111,7 @@ const TOKEN_ICONS = {
   ETH_BASE: tokenIcon(ethereumBaseTokenIcon),
   SOL: tokenIcon(solanaTokenIcon),
   USDT: tokenIcon(usdtTokenIcon),
-  GRAM: tokenIcon(gramTokenIcon),
+  GRAM: tokenIcon(gramTokenIcon, "gram-token-icon"),
   MAG7: tokenIcon(mag7TokenIcon),
   POL: tokenIcon(polTokenIcon),
   SFP: tokenIcon(sfpTokenIcon),
@@ -800,6 +800,11 @@ export default function CryptoWalletApp() {
 
         .token-logo {
           object-fit: contain;
+        }
+
+        .gram-token-icon {
+          object-fit: cover;
+          transform: scale(1.45);
         }
 
         .token-info {
