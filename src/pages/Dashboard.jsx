@@ -119,6 +119,14 @@ const TOKEN_ICONS = {
   USDC: tokenIcon(usdcTokenIcon),
 };
 
+const NETWORK_ICONS = {
+  BNB: bnbTokenIcon,
+  ETH_ERC20: ethereumErc20TokenIcon,
+  ETH_ARB: ethereumArbitrumTokenIcon,
+  ETH_BASE: ethereumBaseTokenIcon,
+  TRX: tronTokenIcon,
+};
+
 const INITIAL_PORTFOLIO = [
   { cgId: "tether", symbol: "USDT", network: "(Solana)", networkFilter: "Solana", iconKey: "USDT", balance: 850, fallbackPrice: 0.9993, fallbackChange: 0 },
   { binanceSymbol: "BNBUSDT", cgId: "binancecoin", symbol: "BNB", network: "(BEP20)", networkFilter: "BEP20", iconKey: "BNB", balance: 0, fallbackPrice: 615.27, fallbackChange: -4.11 },
@@ -127,16 +135,16 @@ const INITIAL_PORTFOLIO = [
   { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(Arbitrum)", networkFilter: "Arbitrum", iconKey: "ETH_ARB", balance: 0, fallbackPrice: 1903.45, fallbackChange: -2.99 },
   { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(Base)", networkFilter: "Base", iconKey: "ETH_BASE", balance: 0, fallbackPrice: 1903.45, fallbackChange: -2.99 },
   { cgId: "gram", symbol: "GRAM", network: "(TON)", networkFilter: "TON", iconKey: "GRAM", balance: 0, fallbackPrice: 1.1, fallbackChange: -4.84 },
-  { cgId: "mag7-ssi", symbol: "MAG7.ssi", network: "(Base)", networkFilter: "Base", iconKey: "MAG7", balance: 0, fallbackPrice: 0.4353, fallbackChange: -2.47 },
+  { cgId: "mag7-ssi", symbol: "MAG7.ssi", network: "(Base)", networkFilter: "Base", iconKey: "MAG7", networkIconKey: "ETH_BASE", balance: 0, fallbackPrice: 0.4353, fallbackChange: -2.47 },
   { cgId: "polygon-ecosystem-token", symbol: "POL", network: "(Polygon)", networkFilter: "Polygon", iconKey: "POL", balance: 0, fallbackPrice: 0.0837, fallbackChange: -3.81 },
-  { binanceSymbol: "SFPUSDT", cgId: "safepal", symbol: "SFP", network: "(BEP20)", networkFilter: "BEP20", iconKey: "SFP", balance: 0, fallbackPrice: 0.1813, fallbackChange: -6.88 },
+  { binanceSymbol: "SFPUSDT", cgId: "safepal", symbol: "SFP", network: "(BEP20)", networkFilter: "BEP20", iconKey: "SFP", networkIconKey: "BNB", balance: 0, fallbackPrice: 0.1813, fallbackChange: -6.88 },
   { binanceSymbol: "SOLUSDT", cgId: "solana", symbol: "SOL", network: "(Solana)", networkFilter: "Solana", iconKey: "SOL", balance: 0, fallbackPrice: 75.71, fallbackChange: -6.3 },
   { binanceSymbol: "TRXUSDT", cgId: "tron", symbol: "TRX", network: "", networkFilter: "TRON", iconKey: "TRX", balance: 0, fallbackPrice: 0.313, fallbackChange: 0.1 },
-  { cgId: "usd-coin", symbol: "USDC", network: "(Arbitrum)", networkFilter: "Arbitrum", iconKey: "USDC", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
-  { cgId: "usd-coin", symbol: "USDC", network: "(ERC20)", networkFilter: "ERC20", iconKey: "USDC", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
-  { cgId: "usd-coin", symbol: "USDC", network: "(Base)", networkFilter: "Base", iconKey: "USDC", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
-  { cgId: "tether", symbol: "USDT", network: "(TRC20)", networkFilter: "TRC20", iconKey: "USDT", balance: 0, fallbackPrice: 0.9993, fallbackChange: 0 },
-  { cgId: "tether", symbol: "USDT", network: "(ERC20)", networkFilter: "ERC20", iconKey: "USDT", balance: 0, fallbackPrice: 0.9993, fallbackChange: 0 },
+  { cgId: "usd-coin", symbol: "USDC", network: "(Arbitrum)", networkFilter: "Arbitrum", iconKey: "USDC", networkIconKey: "ETH_ARB", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
+  { cgId: "usd-coin", symbol: "USDC", network: "(ERC20)", networkFilter: "ERC20", iconKey: "USDC", networkIconKey: "ETH_ERC20", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
+  { cgId: "usd-coin", symbol: "USDC", network: "(Base)", networkFilter: "Base", iconKey: "USDC", networkIconKey: "ETH_BASE", balance: 0, fallbackPrice: 1.0007, fallbackChange: 0 },
+  { cgId: "tether", symbol: "USDT", network: "(TRC20)", networkFilter: "TRC20", iconKey: "USDT", networkIconKey: "TRX", balance: 0, fallbackPrice: 0.9993, fallbackChange: 0 },
+  { cgId: "tether", symbol: "USDT", network: "(ERC20)", networkFilter: "ERC20", iconKey: "USDT", networkIconKey: "ETH_ERC20", balance: 0, fallbackPrice: 0.9993, fallbackChange: 0 },
 ];
 
 const COINGECKO_IDS = [...new Set(INITIAL_PORTFOLIO.map((token) => token.cgId))].join(",");
@@ -802,6 +810,25 @@ export default function CryptoWalletApp() {
           object-fit: contain;
         }
 
+        .token-icon-stack {
+          position: relative;
+          width: 36px;
+          height: 36px;
+          flex-shrink: 0;
+        }
+
+        .token-network-icon {
+          position: absolute;
+          right: -2px;
+          bottom: -2px;
+          width: 17px;
+          height: 17px;
+          border: 2px solid #121318;
+          border-radius: 50%;
+          background: #fff;
+          object-fit: contain;
+        }
+
         .gram-token-icon {
           object-fit: cover;
           transform: scale(1.45);
@@ -1208,7 +1235,17 @@ export default function CryptoWalletApp() {
                 return (
                   <div className="token-card" key={`${token.symbol}-${token.network}-${idx}`}>
                     <div className="token-left">
-                      {TOKEN_ICONS[token.iconKey]}
+                      <div className="token-icon-stack">
+                        {TOKEN_ICONS[token.iconKey]}
+                        {token.networkIconKey && (
+                          <img
+                            className="token-network-icon"
+                            src={NETWORK_ICONS[token.networkIconKey]}
+                            alt=""
+                            aria-hidden="true"
+                          />
+                        )}
+                      </div>
                       <div className="token-info">
                         <div className="token-title-row">
                           <span className="token-symbol">{token.symbol}</span>
