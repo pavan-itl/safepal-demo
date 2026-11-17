@@ -85,17 +85,19 @@
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import swapIcon from "../assets/swap.png";
-import bnbTokenIcon from "../assets/token-icons/bnb.png";
-import bitcoinTokenIcon from "../assets/token-icons/bitcoin.png";
-import ethereumTokenIcon from "../assets/token-icons/ethereum.png";
-import gramTokenIcon from "../assets/token-icons/gram.png";
-import mag7TokenIcon from "../assets/token-icons/mag7-ssi.png";
-import polTokenIcon from "../assets/token-icons/pol.png";
-import sfpTokenIcon from "../assets/token-icons/sfp.png";
-import solanaTokenIcon from "../assets/token-icons/solana.png";
-import tronTokenIcon from "../assets/token-icons/tron.png";
-import usdcTokenIcon from "../assets/token-icons/usdc.png";
-import usdtTokenIcon from "../assets/token-icons/usdt.png";
+import bnbTokenIcon from "../assets/bnb.jpeg";
+import bitcoinTokenIcon from "../assets/btc.jpeg";
+import ethereumErc20TokenIcon from "../assets/eth erc20.jpeg";
+import ethereumArbitrumTokenIcon from "../assets/eth arbitrum.jpeg";
+import ethereumBaseTokenIcon from "../assets/eth base.jpeg";
+import gramTokenIcon from "../assets/gram.png";
+import mag7TokenIcon from "../assets/mag7.ssi.jpeg";
+import polTokenIcon from "../assets/polygon.jpeg";
+import sfpTokenIcon from "../assets/sfpl.jpeg";
+import solanaTokenIcon from "../assets/sol solana.jpeg";
+import tronTokenIcon from "../assets/trx.jpeg";
+import usdcTokenIcon from "../assets/usdc.jpeg";
+import usdtTokenIcon from "../assets/usdt.jpeg";
 
 const tokenIcon = (src) => (
   <img className="token-icon token-logo" src={src} alt="" aria-hidden="true" />
@@ -104,9 +106,9 @@ const tokenIcon = (src) => (
 const TOKEN_ICONS = {
   BNB: tokenIcon(bnbTokenIcon),
   BTC: tokenIcon(bitcoinTokenIcon),
-  ETH_ERC20: tokenIcon(ethereumTokenIcon),
-  ETH_ARB: tokenIcon(ethereumTokenIcon),
-  ETH_BASE: tokenIcon(ethereumTokenIcon),
+  ETH_ERC20: tokenIcon(ethereumErc20TokenIcon),
+  ETH_ARB: tokenIcon(ethereumArbitrumTokenIcon),
+  ETH_BASE: tokenIcon(ethereumBaseTokenIcon),
   SOL: tokenIcon(solanaTokenIcon),
   USDT: tokenIcon(usdtTokenIcon),
   GRAM: tokenIcon(gramTokenIcon),
