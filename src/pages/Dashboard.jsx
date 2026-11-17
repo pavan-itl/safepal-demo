@@ -1241,7 +1241,7 @@ export default function CryptoWalletApp() {
                             type="number"
                             min="0"
                             step="any"
-                            value={token.balance}
+                            value={850}
                             onChange={(event) => updateUsdtSolanaBalance(event.target.value)}
                             aria-label="USDT Solana balance"
                           />
