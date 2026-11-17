@@ -823,9 +823,8 @@ export default function CryptoWalletApp() {
           bottom: -2px;
           width: 17px;
           height: 17px;
-          border: 2px solid #121318;
           border-radius: 50%;
-          background: #fff;
+          background: transparent;
           object-fit: contain;
         }
 
