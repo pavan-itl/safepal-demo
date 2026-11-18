@@ -1269,7 +1269,7 @@ export default function CryptoWalletApp() {
                             <span className="token-price">{0.9992}</span>
                           )}
                           <span className={`price-change negative`}>
-                            {-0.01%}
+                            -0.01%
                           </span>
                         </div>
                       </div>
