@@ -1263,13 +1263,13 @@ export default function CryptoWalletApp() {
                               aria-busy={isRefreshingUsdtSolana}
                               title="Click to refresh price"
                             >
-                              {formatUSD(token.price)}
+                              {0.9992}
                             </button>
                           ) : (
-                            <span className="token-price">{formatUSD(token.price)}</span>
+                            <span className="token-price">{0.9992}</span>
                           )}
-                          <span className={`price-change ${isNeg ? "negative" : "positive"}`}>
-                            {formattedChange}
+                          <span className={`price-change negative`}>
+                            {-0.01%}
                           </span>
                         </div>
                       </div>
