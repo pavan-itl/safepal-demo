@@ -125,10 +125,11 @@ const NETWORK_ICONS = {
   ETH_ARB: ethereumArbitrumTokenIcon,
   ETH_BASE: ethereumBaseTokenIcon,
   TRX: tronTokenIcon,
+  SOL: solanaTokenIcon
 };
 
 const INITIAL_PORTFOLIO = [
-  { cgId: "tether", symbol: "USDT", network: "(Solana)", networkFilter: "Solana", iconKey: "USDT", balance: 850, fallbackPrice: 0.9993, fallbackChange: 0 },
+  { cgId: "tether", symbol: "USDT", network: "(Solana)", networkFilter: "Solana", iconKey: "USDT", networkIconKey: "SOL", balance: 850, fallbackPrice: 0.9993, fallbackChange: 0 },
   { binanceSymbol: "BNBUSDT", cgId: "binancecoin", symbol: "BNB", network: "(BEP20)", networkFilter: "BEP20", iconKey: "BNB", balance: 0, fallbackPrice: 615.27, fallbackChange: -4.11 },
   { binanceSymbol: "BTCUSDT", cgId: "bitcoin", symbol: "BTC", network: "(Bitcoin)", networkFilter: "Bitcoin", iconKey: "BTC", balance: 0, fallbackPrice: 67158.01, fallbackChange: -3.09 },
   { binanceSymbol: "ETHUSDT", cgId: "ethereum", symbol: "ETH", network: "(ERC20)", networkFilter: "ERC20", iconKey: "ETH_ERC20", balance: 0, fallbackPrice: 1903.45, fallbackChange: -2.99 },
